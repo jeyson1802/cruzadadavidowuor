@@ -24,8 +24,18 @@ jQuery(function($) {
 
 	function handlePreloader() {
 
-		if($('.preload').length){
-			$('.preload').delay(220).fadeOut(500);
+		const loader = document.querySelector(".page-loader");
+
+		if (loader) {
+
+			loader.classList.add("slide-off");
+			//activarEstiloOpcionSeleccionado();
+			//generarEnlacesFooter();
+			setTimeout(function () {
+				loader.classList.add("is-loading-finish");
+				loader.remove();
+			}, 2000)
+
 		}
 	}
 

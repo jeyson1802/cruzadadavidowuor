@@ -356,6 +356,7 @@
 	.logo img{
 		width: 180px !important;
 		background-size: contain !important;
+		margin-top: -7px;
 	}
 
 	.logo-area{
@@ -741,6 +742,12 @@
 
 	/* Footer */
 
+	.footer img{
+		margin-top: -7px;
+		width: 240px !important;
+		background-size: contain !important;
+	}
+	
 	.copyright-info{
 		margin: 20px 0;
 	}
