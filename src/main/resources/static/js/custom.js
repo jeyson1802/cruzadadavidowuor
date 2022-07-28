@@ -70,6 +70,13 @@ jQuery(function($) {
 
 			$(".popup").colorbox({iframe:true, innerWidth:650, innerHeight:450});
 
+			  $(".countdown").jCounter({
+				  date: '21 October 2022 12:00:00',
+				  fallback: function () {
+					  console.log("count finished!")
+				  }
+			  });
+
 	  });
 
 
