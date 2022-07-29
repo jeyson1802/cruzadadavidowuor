@@ -2716,3 +2716,26 @@ label {
     margin-top: 30px;
     font-weight: 700;
 }
+
+/* FormValidation
+===================================================== */
+
+.has-feedback label~.form-control-feedback {
+    top: 44px;
+}
+
+.label-formulario {
+    font-weight: 700;
+}
+
+select {
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+}
+
+/* For IE10 */
+select::-ms-expand {
+    display: none;
+}

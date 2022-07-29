@@ -1,6 +1,7 @@
 package com.profetadavidowuor.cruzada.model;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -30,7 +31,7 @@ public class Conferencia {
     private String correo;
 
     @Column(name = "contacto", nullable = false)
-    private Integer contacto;
+    private Long contacto;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idpais", nullable = false)
@@ -107,11 +108,11 @@ public class Conferencia {
         this.correo = correo;
     }
 
-    public Integer getContacto() {
+    public Long getContacto() {
         return contacto;
     }
 
-    public void setContacto(Integer contacto) {
+    public void setContacto(Long contacto) {
         this.contacto = contacto;
     }
 
