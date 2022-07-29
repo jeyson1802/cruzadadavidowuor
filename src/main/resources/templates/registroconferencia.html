@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}" lang="en">
+
+<head>
+</head>
+
+<body>
+    <div layout:fragment="content" th:remove="tag">
+        <div id="page-banner-area" class="page-banner-area" style="background-image:url(images/banner/banner1.jpg)">
+            <!-- Subpage title start -->
+            <div class="page-banner-title">
+                <div class="text-center">
+                    <h2>Conferencia de Pastores y Líderes</h2>
+                </div>
+            </div><!-- Subpage title end -->
+        </div><!-- Banner end -->
+
+        <section id="main-container" class="main-container">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+                        <div class="sidebar sidebar-left">
+                            <div class="widget contact-info">
+                                <div class="contact-info-box">
+                                    <i class="fa fa-map-marker">&nbsp;</i>
+                                    <div class="contact-info-box-content">
+                                        <h4>Lugar y horario</h4>
+                                        <p>Eventime HQ, 1638 North Street Charlottesville, NY 22903</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-box">
+                                    <i class="fa fa-envelope-o">&nbsp;</i>
+                                    <div class="contact-info-box-content">
+                                        <h4>Correo</h4>
+                                        <p>example@example.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-box">
+                                    <i class="fa fa-whatsapp">&nbsp;</i>
+                                    <div class="contact-info-box-content">
+                                        <h4>WhatsApp</h4>
+                                        <p>+1(0231) 3421 453</p>
+                                    </div>
+                                </div>
+
+                            </div><!-- Widget end -->
+                        </div><!-- Sidebar left end -->
+                    </div><!-- Sidebar col end -->
+
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <form id="contact-form" action="#" method="post" role="form">
+                            <div class="error-container"></div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Nombres</label>
+                                        <input class="form-control form-control-name" name="nombres" id="nombres" placeholder="" type="text" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Apellidos</label>
+                                        <input class="form-control form-control-name" name="apellidos" id="apellidos" placeholder="" type="text" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Edad</label>
+                                        <input class="form-control" name="edad" id="edad"
+                                               placeholder="" type="number" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Correo</label>
+                                        <input class="form-control" name="correo" id="correo" placeholder="" type="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>País</label>
+                                        <select name="pais" id="pais" required>
+                                            <option>Selecciones</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Celular</label>
+                                        <input class="form-control" name="celular" id="celular"
+                                               placeholder="" type="number" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-left"><br>
+                                <button class="btn btn-primary solid blank" type="submit">Registrarse</button>
+                            </div>
+                        </form>
+                    </div><!-- Col end -->
+
+                </div><!-- Content row -->
+
+            </div><!-- Conatiner end -->
+        </section><!-- Main container end -->
+    </div>
+</body>
+</html>
