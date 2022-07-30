@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CargoRepository extends CrudRepository<Cargo, Integer> {
 
-    public List<Cargo> findByEstadoOrderByIdAsc(String estado) throws Exception;
+    List<Cargo> findByEstadoOrderByIdAsc(String estado) throws Exception;
 }

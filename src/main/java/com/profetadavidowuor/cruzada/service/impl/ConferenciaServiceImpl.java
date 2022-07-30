@@ -24,9 +24,6 @@ public class ConferenciaServiceImpl implements ConferenciaService {
     private ConferenciaRepository conferenciaRepository;
 
     @Autowired
-    private PaisRepository paisRepository;
-
-    @Autowired
     private ModelMapper modelMapper;
 
     @Override

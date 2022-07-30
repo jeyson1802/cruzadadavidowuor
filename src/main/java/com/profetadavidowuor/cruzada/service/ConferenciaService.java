@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ConferenciaService {
 
-    public ConferenciaDto obtenerConferenciaPorPais(Integer idPais) throws Exception;
+    ConferenciaDto obtenerConferenciaPorPais(Integer idPais) throws Exception;
 
 }

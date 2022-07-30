@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface FuenteRepository extends CrudRepository<Fuente, Integer> {
 
-    public List<Fuente> findByEstadoOrderByIdAsc(String estado) throws Exception;
+    List<Fuente> findByEstadoOrderByIdAsc(String estado) throws Exception;
 }

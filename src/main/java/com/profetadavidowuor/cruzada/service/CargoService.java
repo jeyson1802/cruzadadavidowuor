@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CargoService {
 
-    public List<CargoDto> listarCargos() throws Exception;
+    List<CargoDto> listarCargos() throws Exception;
 
 }

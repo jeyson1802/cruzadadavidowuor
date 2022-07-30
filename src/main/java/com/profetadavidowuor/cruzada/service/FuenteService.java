@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface FuenteService {
 
-    public List<FuenteDto> listarFuentes() throws Exception;
+    List<FuenteDto> listarFuentes() throws Exception;
 
 }

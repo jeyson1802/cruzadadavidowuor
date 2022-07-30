@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface PaisService {
 
-    public List<PaisDto> listarPaises() throws Exception;
+    List<PaisDto> listarPaises() throws Exception;
 
 }
