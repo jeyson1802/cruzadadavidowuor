@@ -1,3 +1,4 @@
+var hid_conferencia;
 var txt_nombres;
 var txt_apellidos;
 var txt_correo;
@@ -22,6 +23,7 @@ $(document).ready(function(){
 });
 
 function initVariables() {
+    hid_conferencia = $("#hid_conferencia");
     txt_nombres = $("#txt_nombres");
     txt_apellidos = $("#txt_apellidos");
     txt_correo = $("#txt_correo");
@@ -160,6 +162,54 @@ function validacionFormularioRegistroConferencia() {
 
 function registrarParticipanteConferencia() {
 
-    alert('OK');
+    var participante = {}
+    participante["idConferencia"] = hid_conferencia.val();
+    participante["nombres"] = txt_nombres.val();
+    participante["apellidos"] = txt_apellidos.val();
+    participante["correo"] = txt_correo.val();
+    participante["celular"] = txt_celular.val();
+    participante["edad"] = txt_edad.val();
+    participante["idPais"] = sel_pais.val();
+    participante["iglesia"] = txt_iglesia.val();
+    participante["idCargo"] = sel_cargo.val();
+    participante["idFuente"] = sel_fuente.val();
+
+    $.ajax({
+        type:"POST",
+        contentType : "application/json",
+        accept: 'text/plain',
+        url : '/registrarParticipanteConferencia',
+        data : JSON.stringify(participante),
+        dataType: 'json',
+        beforeSend: function(xhr) {
+            //mostrarModalProgreso("Generando Conciliación");
+        },
+        error : function(xhr, status, error) {
+            //ocultarModalProgreso();
+
+            if(xhr.status == HttpCodes.unprocessableentity) {
+                if(xhr.responseJSON.code == 422001) {
+                    //dialogConfirm(xhr.responseJSON.message, seguirIntentandoConciliar, cancelarReintentoConciliacion);
+                } else {
+                    //dialogAlert(xhr.responseJSON.message);
+                }
+            }
+
+            if(xhr.status == HttpCodes.error) {
+                var mensaje = "Ocurrió un error inesperado. Por favor contacte al administrador. ";
+                //dialogError(mensaje);
+            }
+
+        },
+        success:function(result, textStatus, xhr) {
+            //ocultarModalProgreso();
+            if(xhr.status == HttpCodes.success){
+                alert('OK');
+                //deshabilitarGenerarConciliacion(true);
+                //mostrarBox(box_reporte_conciliacion);
+                //dialogInfo(result.message);
+            }
+        }
+    });
 
 }
