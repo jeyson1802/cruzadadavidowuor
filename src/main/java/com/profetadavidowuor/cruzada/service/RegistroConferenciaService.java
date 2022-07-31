@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface RegistroConferenciaService {
 
-    void registrarParticipanteConferencia(RequestRegistroConferencia requestRegistroConferencia) throws Exception;
+    Integer registrarParticipanteConferencia(RequestRegistroConferencia requestRegistroConferencia) throws Exception;
 
 }

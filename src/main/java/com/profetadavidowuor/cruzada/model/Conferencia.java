@@ -52,6 +52,13 @@ public class Conferencia {
     @Column(name = "usuario_modificacion", length = 45)
     private String usuarioModificacion;
 
+    public Conferencia() {
+    }
+
+    public Conferencia(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

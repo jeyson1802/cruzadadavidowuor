@@ -31,6 +31,13 @@ public class Cargo {
     @Column(name = "usuario_modificacion", length = 45)
     private String usuarioModificacion;
 
+    public Cargo() {
+    }
+
+    public Cargo(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

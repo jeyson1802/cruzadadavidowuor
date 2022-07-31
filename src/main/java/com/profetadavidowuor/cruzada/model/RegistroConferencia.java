@@ -7,6 +7,7 @@ import java.time.Instant;
 @Table(name = "registro_conferencia")
 public class RegistroConferencia {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "idregistro", nullable = false)
     private Integer id;
 

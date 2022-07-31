@@ -11,7 +11,7 @@
 
     <!-- Javascript Files
         ================================================== -->
-    <script type="text/javascript" src="js/axios.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
     <script type="text/javascript" src="vendors/formvalidation/dist/js/FormValidation.min.js"></script>
     <script type="text/javascript" src="vendors/formvalidation/dist/js/plugins/Bootstrap3.js"></script>
     <script type="text/javascript" src="js/negocio/registroconferencia.js"></script>
@@ -19,7 +19,46 @@
 </head>
 
 <body>
+
     <div layout:fragment="content" th:remove="tag">
+
+        <!-- MODAL LOADING -->
+        <div class="modal" id="div_modal_progreso"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="proceso"><span id="span_text_proceso"></span>
+                        <span class="punto1">&nbsp;.</span>
+                        <span class="punto2">&nbsp;&nbsp;.</span>
+                        <span class="punto3">&nbsp;&nbsp;.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="idModalMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color:#5990e0">&times;</span>
+                        </button>
+                        <h5 id="idTituloDialog" class="modal-title"></h5>
+                    </div>
+                    <div class="modal-body">
+                        <table id="idModelTbl">
+                            <tr><td style="width: 60px;"></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <div id="idButtonFooter"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="page-banner-area" class="page-banner-area" style="background-image:url(images/banner/banner1.jpg)">
             <!-- Subpage title start -->
             <div class="page-banner-title">

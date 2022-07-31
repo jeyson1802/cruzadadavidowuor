@@ -31,6 +31,12 @@ public class Fuente {
     @Column(name = "usuario_modificacion", length = 45)
     private String usuarioModificacion;
 
+    public Fuente() {
+    }
+
+    public Fuente(Integer id) {
+        this.id = id;
+    }
     public Integer getId() {
         return id;
     }

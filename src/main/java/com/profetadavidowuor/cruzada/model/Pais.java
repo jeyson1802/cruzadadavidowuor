@@ -31,6 +31,11 @@ public class Pais {
     @Column(name = "usuario_modificacion", length = 45)
     private String usuarioModificacion;
 
+    public Pais() {
+    }
+    public Pais(Integer id) {
+        this.id = id;
+    }
     public Integer getId() {
         return id;
     }
