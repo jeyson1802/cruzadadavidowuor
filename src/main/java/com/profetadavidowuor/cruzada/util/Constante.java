@@ -6,4 +6,6 @@ public class Constante {
 	public static final String USUARIO_DEFAULT = "USER_DEFAULT";
 	public static final Integer COD_PAIS_REPUBLICA_DOMINICANA = 60;
 
+	public static final String URL_GENERATE_QR_CODE = "https://profetadavidowuoramericalatina.org/qr/decode/";
+
 }

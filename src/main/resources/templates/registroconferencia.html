@@ -22,43 +22,6 @@
 
     <div layout:fragment="content" th:remove="tag">
 
-        <!-- MODAL LOADING -->
-        <div class="modal" id="div_modal_progreso"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="proceso"><span id="span_text_proceso"></span>
-                        <span class="punto1">&nbsp;.</span>
-                        <span class="punto2">&nbsp;&nbsp;.</span>
-                        <span class="punto3">&nbsp;&nbsp;.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="idModalMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
-            <div class="modal-dialog modal-sm modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" style="color:#5990e0">&times;</span>
-                        </button>
-                        <h5 id="idTituloDialog" class="modal-title"></h5>
-                    </div>
-                    <div class="modal-body">
-                        <table id="idModelTbl">
-                            <tr><td style="width: 60px;"></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <div id="idButtonFooter"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div id="page-banner-area" class="page-banner-area" style="background-image:url(images/banner/banner1.jpg)">
             <!-- Subpage title start -->
             <div class="page-banner-title">
@@ -71,7 +34,7 @@
         <section id="main-container" class="main-container">
             <div class="container">
 
-                <div class="row">
+                <div id="div_formulario" class="row">
 
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 
@@ -196,6 +159,75 @@
                     </div><!-- Col end -->
 
                 </div><!-- Content row -->
+
+                <div id="div_constancia" class="d-none">
+
+                    <div class="row text-center sponsor-info">
+                        <h2 id="h2_conferencia" class="section-title">Conferencia de Pastores y Líderes de Republica Dominicana</h2>
+                        <h4 id="h4_codigo_participante" class="sponsor-name">Código de Participante N° 1005632589</h4>
+                    </div><!--/ Title row end -->
+
+                    <div class="row text-center">
+                        <div class="ts-speaker-image">
+                            <img id="img_qr" class="img-responsive center-block"/>
+                        </div><!--Image end -->
+
+                        <div class="row text-center sponsor-info line-horizontal">
+                            <span class="constancia-icon-blue">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                            <h4 id="h4_participante" class="sponsor-name">Jeyson Junior Ventura Aguilar</h4>
+                        </div><!--/ Title row end -->
+                        <div class="row">
+                            <span class="constancia-icon-blue">
+                                <i class="glyphicon glyphicon-map-marker"></i>
+                            </span>
+                            <div class="col-md-12 parrafo-constancia">
+                                <p id="p_lugar">La Romanda RD.</p>
+                            </div>
+                            <div class="col-md-12 parrafo-constancia line-horizontal">
+                                <p id="p_horario">06:00p.m - 09:00 p.m</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <span class="constancia-icon-red">
+                                <i class="glyphicon glyphicon-qrcode"></i>
+                            </span>
+                            <div class="col-md-12 advertencia-constancia">
+                                <p>Muestra el código QR desde tu celular para poder ingresar a la conferencia.</p>
+                            </div>
+                            <div class="col-md-12 advertencia-constancia line-horizontal">
+                                <p>No necesitas imprimir este documento.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <span class="constancia-icon-red">
+                                <i class="glyphicon glyphicon-envelope"></i>
+                            </span>
+                            <div class="col-md-12 advertencia-constancia">
+                                <p>Recuerde revisar su correo electronico con la constancia de su registro.</p>
+                            </div>
+                            <div class="col-md-12 advertencia-constancia line-horizontal">
+                                <p>Revisar en SPAM o Correos no Deseados.</p>
+                            </div>
+                        </div>
+                        <div class="row sponsor-info">
+                            <div class="col-md-12">
+                                <h4 class="sponsor-name">Últimas novedades en nuestro Canal de Telegram </h4>
+                            </div>
+                            <div class="col-md-12">
+                                <span class="constancia-icon-blue">
+                                  <i class="fa fa-telegram"></i>
+                                </span>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-primary solid blank" type="button">Unirme a Telegram</button>
+                            </div>
+                        </div>
+                    </div><!-- Col end -->
+
+                </div>
 
             </div><!-- Conatiner end -->
         </section><!-- Main container end -->

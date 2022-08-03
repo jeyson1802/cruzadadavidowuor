@@ -1,5 +1,6 @@
 package com.profetadavidowuor.cruzada.rest;
 
+import com.profetadavidowuor.cruzada.dto.RegistroConferenciaDto;
 import com.profetadavidowuor.cruzada.exception.ResponseMessage;
 import com.profetadavidowuor.cruzada.request.RequestRegistroConferencia;
 import com.profetadavidowuor.cruzada.service.RegistroConferenciaService;
@@ -25,19 +26,19 @@ public class RegistroConferenciaRestController {
     private RegistroConferenciaService registroConferenciaService;
 
     @PostMapping(value="/registrarParticipanteConferencia")
-    public ResponseEntity<Integer> registrarParticipanteConferencia(@RequestBody RequestRegistroConferencia requestRegistroConferencia,
+    public ResponseEntity<RegistroConferenciaDto> registrarParticipanteConferencia(@RequestBody RequestRegistroConferencia requestRegistroConferencia,
                                                                             WebRequest request) throws Exception {
 
         logger.info("Inicio registrarParticipanteConferencia.......");
 
         logger.info("requestRegistroConferencia ==> " + requestRegistroConferencia);
 
-        Integer idParticipante = registroConferenciaService.registrarParticipanteConferencia(requestRegistroConferencia);
+        RegistroConferenciaDto registroConferenciaDto = registroConferenciaService.registrarParticipanteConferencia(requestRegistroConferencia);
 
-        logger.info("idParticipante ==> " + idParticipante);
+        logger.info("registroConferenciaDto ==> " + registroConferenciaDto);
 
         logger.info("Fin registrarParticipanteConferencia.......");
 
-        return new ResponseEntity<>(idParticipante, HttpStatus.OK);
+        return new ResponseEntity<>(registroConferenciaDto, HttpStatus.OK);
     }
 }

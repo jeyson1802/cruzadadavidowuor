@@ -1,14 +1,18 @@
 package com.profetadavidowuor.cruzada.service.impl;
 
+import com.google.zxing.common.StringUtils;
 import com.profetadavidowuor.cruzada.dto.ConferenciaDto;
+import com.profetadavidowuor.cruzada.dto.RegistroConferenciaDto;
 import com.profetadavidowuor.cruzada.model.*;
 import com.profetadavidowuor.cruzada.repository.ConferenciaRepository;
 import com.profetadavidowuor.cruzada.repository.PaisRepository;
 import com.profetadavidowuor.cruzada.repository.RegistroConferenciaRepository;
 import com.profetadavidowuor.cruzada.request.RequestRegistroConferencia;
 import com.profetadavidowuor.cruzada.service.ConferenciaService;
+import com.profetadavidowuor.cruzada.service.QRCodeService;
 import com.profetadavidowuor.cruzada.service.RegistroConferenciaService;
 import com.profetadavidowuor.cruzada.util.Constante;
+import com.profetadavidowuor.cruzada.util.StringUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
@@ -16,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Base64;
 
 @Service
 public class RegistroConferenciaServiceImpl implements RegistroConferenciaService {
@@ -26,10 +31,16 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
     private RegistroConferenciaRepository registroConferenciaRepository;
 
     @Autowired
+    private ConferenciaRepository conferenciaRepository;
+
+    @Autowired
+    private QRCodeService qrCodeService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override
-    public Integer registrarParticipanteConferencia(RequestRegistroConferencia requestRegistroConferencia) throws Exception {
+    public RegistroConferenciaDto registrarParticipanteConferencia(RequestRegistroConferencia requestRegistroConferencia) throws Exception {
 
         logger.info("conferencia ===> " + requestRegistroConferencia.toString());
 
@@ -37,20 +48,32 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
 
         RegistroConferencia registroConferencia = modelMapper.map(requestRegistroConferencia, RegistroConferencia.class);
 
-        registroConferencia.setConferencia(new Conferencia(requestRegistroConferencia.getIdConferencia()));
-        registroConferencia.setPais(new Pais(requestRegistroConferencia.getIdPais()));
-        registroConferencia.setCargo(new Cargo(requestRegistroConferencia.getIdCargo()));
-        registroConferencia.setFuente(new Fuente(requestRegistroConferencia.getIdFuente()));
-
         registroConferencia.setEstado(Constante.COD_ESTADO_ACTIVO);
         registroConferencia.setFechaRegistro(Instant.now());
         registroConferencia.setUsuarioRegistro(Constante.USUARIO_DEFAULT);
 
-        RegistroConferencia resultado = registroConferenciaRepository.save(registroConferencia);
+        RegistroConferencia participante = registroConferenciaRepository.save(registroConferencia);
 
-        logger.info("resultado ===> " + resultado.toString());
+        logger.info("resultado ===> " + participante.toString());
 
-        return resultado.getId();
+        Conferencia conferencia = conferenciaRepository.findById(participante.getConferencia().getId()).get();
+        participante.setConferencia(conferencia);
+
+        RegistroConferenciaDto registroConferenciaDto = modelMapper.map(participante, RegistroConferenciaDto.class);
+
+        String idParticipante = StringUtil.toStr(registroConferenciaDto.getId());
+
+        String urlDecodeQR = Constante.URL_GENERATE_QR_CODE.concat(Base64.getEncoder().encodeToString(idParticipante.getBytes()));
+
+        byte[] qrCode = qrCodeService.generateQRCode(urlDecodeQR, 250, 250);
+
+        String qrCodeBase64 = Base64.getEncoder().encodeToString(qrCode);
+
+        registroConferenciaDto.setQrCodeBase64(qrCodeBase64);
+
+        logger.info("registroConferenciaDto ===> " + registroConferenciaDto.toString());
+
+        return registroConferenciaDto;
 
     }
 }

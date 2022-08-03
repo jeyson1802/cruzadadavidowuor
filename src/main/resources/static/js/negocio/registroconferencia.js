@@ -10,6 +10,14 @@ var txt_iglesia;
 var sel_cargo;
 var btn_registro;
 var form_registro_conferencia_validation;
+var img_qr;
+var h2_conferencia;
+var h4_codigo_participante;
+var h4_participante;
+var p_lugar;
+var p_horario;
+var div_formulario;
+var div_constancia;
 
 var HttpCodes = {
     success  : 200,
@@ -42,6 +50,14 @@ function initVariables() {
     txt_iglesia = $("#txt_iglesia");
     sel_cargo = $("#sel_cargo");
     btn_registro = $("#btn_registro");
+    img_qr = $("#img_qr");
+    h2_conferencia = $("#h2_conferencia");
+    h4_codigo_participante = $("#h4_codigo_participante");
+    h4_participante = $("#h4_participante");
+    p_lugar = $("#p_lugar");
+    p_horario = $("#p_horario");
+    div_formulario =  $("#div_formulario");
+    div_constancia =  $("#div_constancia");
 }
 
 function initComponentes() {
@@ -212,10 +228,7 @@ function registrarParticipanteConferencia() {
         success:function(result, textStatus, xhr) {
             //ocultarModalProgreso();
             if(xhr.status == HttpCodes.success){
-                //deshabilitarGenerarConciliacion(true);
-                //mostrarBox(box_reporte_conciliacion);
-                //dialogInfo(result);
-                bootbox.dialog({
+                /*bootbox.dialog({
                     message: "<p>" + result + "</p>",
                     size: 'medium',
                     centerVertical: true,
@@ -226,108 +239,17 @@ function registrarParticipanteConferencia() {
                             className: Boton.PRIMARY
                         }
                     }
-                });
+                });*/
+                div_formulario.addClass("d-none");
+                h2_conferencia.text(result.conferencia.descripcion);
+                h4_codigo_participante.text('Código de Participante N° ' + result.id);
+                h4_participante.text(result.nombres + ' ' + result.apellidos);
+                p_lugar.html(result.conferencia.lugar);
+                p_horario.html(result.conferencia.horario);
+                img_qr.attr('src', 'data:image/png;base64,' + result.qrCodeBase64);
+                div_constancia.removeClass("d-none");
             }
         }
     });
 
-}
-
-function dialogConfirm(text, funcBtnAceptar, funcBtnCancelar) {
-
-    var params = {
-        id : "idModalMensaje",
-        title : "Confirmaci\u00f3n",
-        icon : "<i style='color: #4886fe;' class='fa fa-question-circle fa-3x'></i>",
-        textContent : text,
-        buttons : "<button id='idAceptarConfig' type='button' class='btn btn-outline-primary'>Aceptar</button>"
-            + "<button id='idCancelarConfig' type='button' class='btn btn-outline-secondary ml-1' data-dismiss='modal' >Cancelar</button>"
-    };
-
-    dialogCustom(params);
-    if (funcBtnAceptar != undefined) {
-        $("#idAceptarConfig").on("click", function() {
-            $('#' + params.id).modal('hide');
-            funcBtnAceptar();
-        });
-
-    }
-
-    $('#idCancelarConfig').on('click', function(e) {
-        $('#' + params.id).modal('hide');
-        if (funcBtnCancelar != undefined) {
-            funcBtnCancelar();
-        }
-    });
-
-}
-
-function dialogAlert(text,funcBtnAceptar) {
-
-    var params = {
-        id : "idModalMensaje",
-        title : "Alerta",
-        icon : "<i style='color: #f3e97a;' class='fa fa-exclamation-triangle fa-3x'></i>",
-        textContent : text,
-        buttons : "<button id='idAceptarAlert' type='button' class='btn btn-outline-primary'>Aceptar</button>"
-    };
-
-    dialogCustom(params);
-    $('#idAceptarAlert').on('click', function(e) {
-        $('#' + params.id).modal('hide');
-        if (funcBtnAceptar != undefined) {
-            funcBtnAceptar();
-        }
-    });
-}
-
-
-function dialogInfo(text,funcBtnAceptar) {
-
-    var params = {
-        id : "idModalMensaje",
-        title : "Mensaje",
-        icon : "<i style='color: #28a745;' class='fa fa-info-circle fa-3x'></i>",
-        textContent : text,
-        buttons : "<button id='idAceptarInfo' type='button' class='btn btn-outline-primary'>Aceptar</button>"
-    };
-
-    dialogCustom(params);
-    $('#idAceptarInfo').on('click', function(e) {
-        $('#' + params.id).modal('hide');
-        if (funcBtnAceptar != undefined) {
-            funcBtnAceptar();
-        }
-    });
-}
-
-function dialogError(text,funcBtnAceptar) {
-
-    var params = {
-        id : "idModalMensaje",
-        title : "Error",
-        icon : "<i style='color: #dc3545;' class='fa fa-times-circle fa-3x'></i>",
-        textContent : text,
-        buttons : "<button id='idAceptarError' type='button' class='btn btn-outline-primary'>Aceptar</button>"
-    };
-
-    dialogCustom(params);
-    $('#idAceptarError').on('click', function(e) {
-        $('#' + params.id).modal('hide');
-        if (funcBtnAceptar != undefined) {
-            funcBtnAceptar();
-        }
-    });
-}
-
-function dialogCustom(dialog) {
-
-    $('#' + dialog.id).modal({
-        keyboard : false
-    });
-    $('#' + dialog.id).modal('show');
-    $("#idTituloDialog").text(dialog.title);
-    $("#idModelTbl tr td:eq(0)").html(dialog.icon);
-    $("#idModelTbl tr td:eq(1)").html(dialog.textContent);
-    $("#idButtonFooter").html(dialog.buttons);
 }
