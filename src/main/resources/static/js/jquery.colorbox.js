@@ -1028,7 +1028,7 @@
 			photo.src = href;
 
 		} else if (href) {
-			$loadingBay.load(href, settings.get('data'), function (data, status) {
+			$loadingBay.on(href, settings.get('data'), function (data, status) {
 				if (request === requests) {
 					prep(status === 'error' ? $tag(div, 'Error').html(settings.get('xhrError')) : $(this).contents());
 				}

@@ -199,35 +199,35 @@ function registrarParticipanteConferencia() {
     participante["idFuente"] = sel_fuente.val();
 
     $.ajax({
-        type:"POST",
-        contentType : "application/json",
+        type: "POST",
+        contentType: "application/json",
         accept: 'text/plain',
-        url : '/registrarParticipanteConferencia',
-        data : JSON.stringify(participante),
+        url: '/registrarParticipanteConferencia',
+        data: JSON.stringify(participante),
         dataType: 'json',
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             //mostrarModalProgreso("Generando Conciliación");
         },
-        error : function(xhr, status, error) {
+        error: function (xhr, status, error) {
             //ocultarModalProgreso();
 
-            if(xhr.status == HttpCodes.unprocessableentity) {
-                if(xhr.responseJSON.code == 422001) {
+            if (xhr.status == HttpCodes.unprocessableentity) {
+                if (xhr.responseJSON.code == 422001) {
                     //dialogConfirm(xhr.responseJSON.message, seguirIntentandoConciliar, cancelarReintentoConciliacion);
                 } else {
                     //dialogAlert(xhr.responseJSON.message);
                 }
             }
 
-            if(xhr.status == HttpCodes.error) {
+            if (xhr.status == HttpCodes.error) {
                 var mensaje = "Ocurrió un error inesperado. Por favor contacte al administrador. ";
                 //dialogError(mensaje);
             }
 
         },
-        success:function(result, textStatus, xhr) {
+        success: function (result, textStatus, xhr) {
             //ocultarModalProgreso();
-            if(xhr.status == HttpCodes.success){
+            if (xhr.status == HttpCodes.success) {
                 /*bootbox.dialog({
                     message: "<p>" + result + "</p>",
                     size: 'medium',
@@ -248,8 +248,91 @@ function registrarParticipanteConferencia() {
                 p_horario.html(result.conferencia.horario);
                 img_qr.attr('src', 'data:image/png;base64,' + result.qrCodeBase64);
                 div_constancia.removeClass("d-none");
+
+                generarConstanciaParticipante(result.id);
             }
         }
     });
 
+}
+
+function generarConstanciaParticipante(idParticipante) {
+
+    $.ajax({
+        type:"POST",
+        url : '/generarConstanciaParticipante/' + idParticipante,
+        xhrFields: {
+            responseType: 'blob'
+        },
+        beforeSend: function(xhr) {
+            //mostrarModalProgreso("Generando Reporte Conciliacion Abono Devolución");
+        },
+        error : function(xhr, status, error) {
+            //ocultarModalProgreso();
+            var mensaje = "Ocurrió un error inesperado. Por favor contacte al administrador. ";
+            alert(mensaje);
+        },
+        success:function(result, textStatus, xhr) {
+            //ocultarModalProgreso();
+
+            if(xhr.status==HttpCodes.success) {
+
+                var filename = idParticipante + "_" + "ConstanciaConferencia.pdf";
+
+                var blob = new Blob([result], { type: 'application/octet-stream' });
+
+                if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                    //   IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                    window.navigator.msSaveBlob(blob, filename);
+                } else {
+                    var URL = window.URL || window.webkitURL;
+                    var downloadUrl = URL.createObjectURL(blob);
+
+                    if (filename) {
+                        // use HTML5 a[download] attribute to specify filename
+                        var a = document.createElement("a");
+
+                        // safari doesn't support this yet
+                        if (typeof a.download === 'undefined') {
+                            window.location = downloadUrl;
+                        } else {
+                            a.href = downloadUrl;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.target = "_blank";
+                            a.click();
+
+                            window.onfocus = function () {
+                                document.body.removeChild(a);
+                                window.URL.revokeObjectURL(downloadUrl);
+                            }
+                        }
+                    } else {
+                        window.location = downloadUrl;
+                    }
+                }
+            }
+            }
+        });
+    }
+
+function loadding(onOf) {
+    if (onOf) {
+        var div="<div id='loadding' class='box'><div class='image'><img align='absmiddle' src='/appkahaxi/images/loading.gif'></div><div class='line1'>PROCESANDO</div><div class='line2'>Ejecutando petición, por favor espere...</div></div>";
+        jQuery.blockUI({
+            message: div,
+            css: {
+                border: 'none',
+                padding: '0px',
+                backgroundColor: ''
+            },
+            overlayCSS: {
+                backgroundColor: 'black',
+                opacity: 0.10
+            }
+        });
+    }
+    else {
+        jQuery.unblockUI();
+    }
 }

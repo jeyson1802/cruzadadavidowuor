@@ -70,12 +70,12 @@ jQuery(function($) {
 
 			$(".popup").colorbox({iframe:true, innerWidth:650, innerHeight:450});
 
-			  $(".countdown").jCounter({
+			  /*$(".countdown").jCounter({
 				  date: '21 October 2022 12:00:00',
 				  fallback: function () {
 					  console.log("count finished!")
 				  }
-			  });
+			  });*/
 
 	  });
 
@@ -85,10 +85,10 @@ jQuery(function($) {
 	/*  Counter
 	/* ----------------------------------------------------------- */
 
-		$('.counterUp').counterUp({
+		/*$('.counterUp').counterUp({
 		 delay: 10,
 		 time: 1000
-		});
+		});*/
 
 
 	

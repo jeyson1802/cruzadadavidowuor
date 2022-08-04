@@ -1,21 +1,20 @@
 package com.profetadavidowuor.cruzada.rest;
 
 import com.profetadavidowuor.cruzada.dto.RegistroConferenciaDto;
-import com.profetadavidowuor.cruzada.exception.ResponseMessage;
 import com.profetadavidowuor.cruzada.request.RequestRegistroConferencia;
 import com.profetadavidowuor.cruzada.service.RegistroConferenciaService;
-import com.profetadavidowuor.cruzada.service.impl.RegistroConferenciaServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.Date;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class RegistroConferenciaRestController {
@@ -40,5 +39,21 @@ public class RegistroConferenciaRestController {
         logger.info("Fin registrarParticipanteConferencia.......");
 
         return new ResponseEntity<>(registroConferenciaDto, HttpStatus.OK);
+    }
+
+    @PostMapping (value="/generarConstanciaParticipante/{idParticipante}")
+    public void generarConstanciaParticipante(@PathVariable("idParticipante") Integer idParticipante,
+                                                    HttpServletResponse response) throws Exception {
+
+        logger.info("Inicio generarConstanciaParticipante.......");
+
+        String nombreArchivo = idParticipante + "_" + "ConstanciaConferencia.pdf";
+        response.setContentType("application/x-pdf");
+        response.setHeader("Content-disposition", "inline; filename=" + nombreArchivo);
+
+        registroConferenciaService.generarConstanciaParticipante(idParticipante, response.getOutputStream());
+
+        logger.info("Fin generarConstanciaParticipante.......");
+
     }
 }
