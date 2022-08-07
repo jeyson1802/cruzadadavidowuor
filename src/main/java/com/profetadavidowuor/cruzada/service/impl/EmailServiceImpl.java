@@ -1,13 +1,16 @@
 package com.profetadavidowuor.cruzada.service.impl;
 
-import com.profetadavidowuor.cruzada.dto.RegistroConferenciaDto;
 import com.profetadavidowuor.cruzada.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
+import javax.mail.internet.MimeMessage;
+import java.util.Map;
+@Service
 public class EmailServiceImpl implements EmailService {
 
     @Autowired
@@ -17,19 +20,19 @@ public class EmailServiceImpl implements EmailService {
     private SpringTemplateEngine templateEngine;
 
     @Override
-    public String sendMailRegistroConferencia(RegistroConferenciaDto registroConferenciaDto) throws Exception {
+    public void sendMail(String template, String asunto, String destino, Map<String, Object> parametros) throws Exception {
 
         Context context = new Context();
-        context.setVariable("registroConferenciaDto", registroConferenciaDto);
+        context.setVariable("parametros", parametros);
 
-        String process = templateEngine.process("emails/welcome", context);
-        javax.mail.internet.MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        String process = templateEngine.process(template, context);
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
-        helper.setSubject("Welcome " + registroConferenciaDto.getNombres());
+        helper.setSubject(asunto);
         helper.setText(process, true);
-        helper.setTo(registroConferenciaDto.getCorreo());
+        helper.setTo(destino);
+        //helper.addAttachment("FreelanceSuccess.pdf", file);
         javaMailSender.send(mimeMessage);
 
-        return "Sent";
     }
 }

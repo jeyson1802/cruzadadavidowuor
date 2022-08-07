@@ -8,10 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletResponse;
@@ -54,6 +51,17 @@ public class RegistroConferenciaRestController {
         registroConferenciaService.generarConstanciaParticipante(idParticipante, response.getOutputStream());
 
         logger.info("Fin generarConstanciaParticipante.......");
+
+    }
+
+    @PostMapping (value="/enviarEmailConstanciaParticipante/{idParticipante}")
+    public void enviarEmailConstanciaParticipante(@PathVariable("idParticipante") Integer idParticipante) throws Exception {
+
+        logger.info("Inicio enviarEmailConstanciaParticipante.......");
+
+        registroConferenciaService.enviarEmailConstanciaParticipante(idParticipante);
+
+        logger.info("Fin enviarEmailConstanciaParticipante.......");
 
     }
 }

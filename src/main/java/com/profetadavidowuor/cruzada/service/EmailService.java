@@ -2,7 +2,9 @@ package com.profetadavidowuor.cruzada.service;
 
 import com.profetadavidowuor.cruzada.dto.RegistroConferenciaDto;
 
+import java.util.Map;
+
 public interface EmailService {
 
-    String sendMailRegistroConferencia(RegistroConferenciaDto registroConferenciaDto) throws Exception;
+    void sendMail(String template, String asunto, String destino, Map<String, Object> parametros) throws Exception;
 }

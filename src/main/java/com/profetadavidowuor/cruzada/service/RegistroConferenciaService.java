@@ -13,4 +13,6 @@ public interface RegistroConferenciaService {
 
     void generarConstanciaParticipante(Integer idParticipante, OutputStream outputStream) throws Exception;
 
+    void enviarEmailConstanciaParticipante(Integer idParticipante) throws Exception;
+
 }
