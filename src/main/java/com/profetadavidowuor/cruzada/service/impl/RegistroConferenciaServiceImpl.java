@@ -17,6 +17,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.time.Instant;
 import java.util.Base64;
@@ -137,6 +138,12 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
         parameters.put("NOMBRES_APELLIDOS", participante.getNombres() + " " + participante.getApellidos());
         parameters.put("CONFERENCIA_LUGAR", conferencia.getLugar());
         parameters.put("CONFERENCIA_HORARIO", conferencia.getHorario());
+
+        parameters.put("IMG_BASE_64_BYTES", qrCode);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        jasperReportService.exportarPDFStream(Constante.REPORTE_CONSTANCIA_PARTICIPANTE_JRXML, parameters, null, outputStream);
+        parameters.put("PDF_BYTES", outputStream.toByteArray());
 
         emailService.sendMail("emails/constancia", "Constancia de Registro a la Conferencia", participante.getCorreo(), parameters);
 
