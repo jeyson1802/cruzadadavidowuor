@@ -171,4 +171,23 @@ public class Conferencia {
         this.usuarioModificacion = usuarioModificacion;
     }
 
+    @Override
+    public String toString() {
+        return "Conferencia{" +
+                "id=" + id +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaInicial=" + fechaInicial +
+                ", fechaFinal=" + fechaFinal +
+                ", lugar='" + lugar + '\'' +
+                ", horario='" + horario + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contacto=" + contacto +
+                ", pais=" + pais +
+                ", estado='" + estado + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", usuarioRegistro='" + usuarioRegistro + '\'' +
+                ", fechaModificacion=" + fechaModificacion +
+                ", usuarioModificacion='" + usuarioModificacion + '\'' +
+                '}';
+    }
 }

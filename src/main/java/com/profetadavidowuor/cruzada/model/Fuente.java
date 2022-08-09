@@ -93,4 +93,16 @@ public class Fuente {
         this.usuarioModificacion = usuarioModificacion;
     }
 
+    @Override
+    public String toString() {
+        return "Fuente{" +
+                "id=" + id +
+                ", descripcion='" + descripcion + '\'' +
+                ", estado='" + estado + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", usuarioRegistro='" + usuarioRegistro + '\'' +
+                ", fechaModificacion=" + fechaModificacion +
+                ", usuarioModificacion='" + usuarioModificacion + '\'' +
+                '}';
+    }
 }

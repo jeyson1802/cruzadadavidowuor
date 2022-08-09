@@ -92,4 +92,16 @@ public class Pais {
         this.usuarioModificacion = usuarioModificacion;
     }
 
+    @Override
+    public String toString() {
+        return "Pais{" +
+                "id=" + id +
+                ", descripcion='" + descripcion + '\'' +
+                ", estado='" + estado + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", usuarioRegistro='" + usuarioRegistro + '\'' +
+                ", fechaModificacion=" + fechaModificacion +
+                ", usuarioModificacion='" + usuarioModificacion + '\'' +
+                '}';
+    }
 }

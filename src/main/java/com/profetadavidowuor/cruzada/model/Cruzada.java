@@ -163,4 +163,23 @@ public class Cruzada {
         this.usuarioModificacion = usuarioModificacion;
     }
 
+    @Override
+    public String toString() {
+        return "Cruzada{" +
+                "id=" + id +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaInicial=" + fechaInicial +
+                ", fechaFinal=" + fechaFinal +
+                ", lugar='" + lugar + '\'' +
+                ", horario='" + horario + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contacto=" + contacto +
+                ", pais=" + pais +
+                ", estado='" + estado + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", usuarioRegistro='" + usuarioRegistro + '\'' +
+                ", fechaModificacion=" + fechaModificacion +
+                ", usuarioModificacion='" + usuarioModificacion + '\'' +
+                '}';
+    }
 }

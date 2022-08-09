@@ -188,4 +188,25 @@ public class RegistroConferencia {
         this.usuarioModificacion = usuarioModificacion;
     }
 
+    @Override
+    public String toString() {
+        return "RegistroConferencia{" +
+                "id=" + id +
+                ", nombres='" + nombres + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", correo='" + correo + '\'' +
+                ", celular=" + celular +
+                ", edad=" + edad +
+                ", iglesia='" + iglesia + '\'' +
+                ", conferencia=" + conferencia +
+                ", pais=" + pais +
+                ", cargo=" + cargo +
+                ", fuente=" + fuente +
+                ", estado='" + estado + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", usuarioRegistro='" + usuarioRegistro + '\'' +
+                ", fechaModificacion=" + fechaModificacion +
+                ", usuarioModificacion='" + usuarioModificacion + '\'' +
+                '}';
+    }
 }

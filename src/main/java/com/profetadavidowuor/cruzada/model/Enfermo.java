@@ -2,6 +2,7 @@ package com.profetadavidowuor.cruzada.model;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "enfermo")
@@ -208,4 +209,27 @@ public class Enfermo {
         this.usuarioModificacion = usuarioModificacion;
     }
 
+    @Override
+    public String toString() {
+        return "Enfermo{" +
+                "id=" + id +
+                ", nombres='" + nombres + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", correo='" + correo + '\'' +
+                ", celular=" + celular +
+                ", edad=" + edad +
+                ", iglesia='" + iglesia + '\'' +
+                ", enfermedad='" + enfermedad + '\'' +
+                ", anioEnfermedad=" + anioEnfermedad +
+                ", fotoDiagnostico=" + Arrays.toString(fotoDiagnostico) +
+                ", cruzada=" + cruzada +
+                ", pais=" + pais +
+                ", fuente=" + fuente +
+                ", estado='" + estado + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", usuarioRegistro='" + usuarioRegistro + '\'' +
+                ", fechaModificacion=" + fechaModificacion +
+                ", usuarioModificacion='" + usuarioModificacion + '\'' +
+                '}';
+    }
 }

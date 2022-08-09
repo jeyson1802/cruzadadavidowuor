@@ -28,7 +28,7 @@ public class EmailServiceImpl implements EmailService {
     private SpringTemplateEngine templateEngine;
 
     @Override
-    public void sendMail(String template, String asunto, String destino, Map<String, Object> parametros) throws Exception {
+    public void sendMail(String template, String asunto, String destino, Map<String, Object> parametros, Map<String, byte[]> imagenesCorreo,  Map<String, byte[]> adjuntos) throws Exception {
 
         Context context = new Context();
         context.setVariable("parametros", parametros);
@@ -39,12 +39,17 @@ public class EmailServiceImpl implements EmailService {
         helper.setSubject(asunto);
         helper.setText(process, true);
         helper.setTo(destino);
-        byte[] qrCode = (byte[]) parametros.get("IMG_BASE_64_BYTES");
-        ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(qrCode, "image/png");
-        helper.addInline("qr" , byteArrayDataSource);
-        byte[] pdf = (byte[]) parametros.get("PDF_BYTES");
-        ByteArrayDataSource byteArrayDataSourcePDF = new ByteArrayDataSource(pdf, "application/pdf");
-        helper.addAttachment("pdf", byteArrayDataSourcePDF);
+
+        for (Map.Entry<String, byte[]> imagenesCorreoEntry : imagenesCorreo.entrySet()) {
+            ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(imagenesCorreoEntry.getValue(), "image/png");
+            helper.addInline(imagenesCorreoEntry.getKey() , byteArrayDataSource);
+        }
+
+        for (Map.Entry<String, byte[]> adjuntosEntry : adjuntos.entrySet()) {
+            ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(adjuntosEntry.getValue(), "application/pdf");
+            helper.addAttachment(adjuntosEntry.getKey() , byteArrayDataSource);
+        }
+
         javaMailSender.send(mimeMessage);
 
     }
