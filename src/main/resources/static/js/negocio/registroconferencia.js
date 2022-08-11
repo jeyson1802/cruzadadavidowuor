@@ -18,6 +18,7 @@ var p_lugar;
 var p_horario;
 var div_formulario;
 var div_constancia;
+var celular;
 
 var HttpCodes = {
     success  : 200,
@@ -72,6 +73,18 @@ function initComponentes() {
             }
         });
     });
+
+    txt_celular.intlTelInput({
+        allowDropdown:false,
+        customPlaceholder: "off",
+        initialCountry: "do",
+        autoHideDialCode: true,
+        preferredCountries: ["do","pe" ],
+        separateDialCode: true,
+        formatOnDisplay: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.18/js/utils.min.js"
+    });
+
 }
 
 function validacionFormularioRegistroConferencia() {
@@ -137,6 +150,10 @@ function validacionFormularioRegistroConferencia() {
                             stringLength: {
                                 max: 3,
                                 message: 'La edad no puede sobrepasar 3 caracteres.',
+                            },
+                            stringLength: {
+                                min: 2,
+                                message: 'La edad no puede ser menor a 2 caracteres.',
                             },
                         },
                     },
@@ -250,6 +267,9 @@ function registrarParticipanteConferencia() {
                 div_constancia.removeClass("d-none");
 
                 generarConstanciaParticipante(result.id);
+                enviarEmailConstanciaParticipante(result.id);
+                agregarContactoParticipanteSendinBlue(result.id);
+
             }
         }
     });
@@ -315,6 +335,82 @@ function generarConstanciaParticipante(idParticipante) {
             }
         });
     }
+
+function enviarEmailConstanciaParticipante(idParticipante) {
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        accept: 'text/plain',
+        url: '/enviarEmailConstanciaParticipante/' + idParticipante,
+        beforeSend: function (xhr) {
+            //mostrarModalProgreso("Generando Conciliación");
+        },
+        error: function (xhr, status, error) {
+            //ocultarModalProgreso();
+
+            if (xhr.status == HttpCodes.unprocessableentity) {
+                if (xhr.responseJSON.code == 422001) {
+                    //dialogConfirm(xhr.responseJSON.message, seguirIntentandoConciliar, cancelarReintentoConciliacion);
+                } else {
+                    //dialogAlert(xhr.responseJSON.message);
+                }
+            }
+
+            if (xhr.status == HttpCodes.error) {
+                var mensaje = "Ocurrió un error inesperado. Por favor contacte al administrador. ";
+                //dialogError(mensaje);
+            }
+
+        },
+        success: function (result, textStatus, xhr) {
+            //ocultarModalProgreso();
+            if (xhr.status == HttpCodes.success) {
+
+                //agregarContactoParticipanteSendinBlue(result.id);
+            }
+        }
+    });
+
+}
+
+function agregarContactoParticipanteSendinBlue(idParticipante) {
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        accept: 'text/plain',
+        url: '/agregarContactoParticipanteSendinBlue/' + idParticipante,
+        beforeSend: function (xhr) {
+            //mostrarModalProgreso("Generando Conciliación");
+        },
+        error: function (xhr, status, error) {
+            //ocultarModalProgreso();
+
+            if (xhr.status == HttpCodes.unprocessableentity) {
+                if (xhr.responseJSON.code == 422001) {
+                    //dialogConfirm(xhr.responseJSON.message, seguirIntentandoConciliar, cancelarReintentoConciliacion);
+                } else {
+                    //dialogAlert(xhr.responseJSON.message);
+                }
+            }
+
+            if (xhr.status == HttpCodes.error) {
+                var mensaje = "Ocurrió un error inesperado. Por favor contacte al administrador. ";
+                //dialogError(mensaje);
+            }
+
+        },
+        success: function (result, textStatus, xhr) {
+            //ocultarModalProgreso();
+            if (xhr.status == HttpCodes.success) {
+
+                //agregarContactoParticipanteSendinBlue(result.id);
+            }
+        }
+    });
+
+}
 
 function loadding(onOf) {
     if (onOf) {

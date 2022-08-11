@@ -6,10 +6,7 @@ import com.profetadavidowuor.cruzada.model.RegistroConferencia;
 import com.profetadavidowuor.cruzada.repository.ConferenciaRepository;
 import com.profetadavidowuor.cruzada.repository.RegistroConferenciaRepository;
 import com.profetadavidowuor.cruzada.request.RequestRegistroConferencia;
-import com.profetadavidowuor.cruzada.service.EmailService;
-import com.profetadavidowuor.cruzada.service.JasperReportService;
-import com.profetadavidowuor.cruzada.service.QRCodeService;
-import com.profetadavidowuor.cruzada.service.RegistroConferenciaService;
+import com.profetadavidowuor.cruzada.service.*;
 import com.profetadavidowuor.cruzada.util.Constante;
 import com.profetadavidowuor.cruzada.util.StringUtil;
 import org.apache.logging.log4j.LogManager;
@@ -44,6 +41,9 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private SendinBlueService sendinBlueService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -105,6 +105,17 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
         adjuntos.put(idParticipante + "ConstanciaConferencia", outputStream.toByteArray());
 
         emailService.sendMail("emails/constancia", "Constancia de Registro a la Conferencia", StringUtil.toStr(parametros.get("CORREO")), parametros, imagenesCorreo, adjuntos);
+
+    }
+
+    @Override
+    public void agregarContactoParticipanteSendinBlue(Integer idParticipante) throws Exception {
+
+        RegistroConferencia participante = registroConferenciaRepository.findById(idParticipante).get();
+
+        sendinBlueService.crearContacto(participante.getCorreo(),
+                participante.getApellidos(), participante.getNombres(),
+                "+51" + participante.getCelular(), Constante.ID_LISTA_SENDINBLUE_CONFERENCIA_RD);
 
     }
 

@@ -21,7 +21,7 @@ public class RegistroConferencia {
     private String correo;
 
     @Column(name = "celular", nullable = false)
-    private Integer celular;
+    private String celular;
 
     @Column(name = "edad")
     private Integer edad;
@@ -92,11 +92,11 @@ public class RegistroConferencia {
         this.correo = correo;
     }
 
-    public Integer getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 

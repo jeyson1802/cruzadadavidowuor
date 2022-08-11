@@ -1,25 +1,22 @@
 package com.profetadavidowuor.cruzada.service.impl;
 
 import com.profetadavidowuor.cruzada.service.EmailService;
-import org.apache.commons.lang3.CharEncoding;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
-import javax.mail.internet.ContentType;
 import javax.mail.internet.MimeMessage;
 import javax.mail.util.ByteArrayDataSource;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.Map;
 @Service
 public class EmailServiceImpl implements EmailService {
+
+    private static final Logger logger = LogManager.getLogger(SendinBlueServiceImpl.class);
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -29,6 +26,8 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendMail(String template, String asunto, String destino, Map<String, Object> parametros, Map<String, byte[]> imagenesCorreo,  Map<String, byte[]> adjuntos) throws Exception {
+
+        logger.info("Inicio sendMail");
 
         Context context = new Context();
         context.setVariable("parametros", parametros);
@@ -51,6 +50,8 @@ public class EmailServiceImpl implements EmailService {
         }
 
         javaMailSender.send(mimeMessage);
+
+        logger.info("Fin sendMail");
 
     }
 }

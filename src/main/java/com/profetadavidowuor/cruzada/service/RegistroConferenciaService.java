@@ -15,4 +15,6 @@ public interface RegistroConferenciaService {
 
     void enviarEmailConstanciaParticipante(Integer idParticipante) throws Exception;
 
+    void agregarContactoParticipanteSendinBlue(Integer idParticipante) throws Exception;
+
 }

@@ -11,4 +11,6 @@ public class Constante {
 	public static final String EXTENSION_JRXML = ".jrxml";
 	public static final String REPORTE_CONSTANCIA_PARTICIPANTE_JRXML = "REPORTE_CONSTANCIA_PARTICIPANTE";
 
+	public static final String ID_LISTA_SENDINBLUE_CONFERENCIA_RD = "5";
+
 }

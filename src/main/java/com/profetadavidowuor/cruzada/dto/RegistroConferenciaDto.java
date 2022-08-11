@@ -9,7 +9,7 @@ public class RegistroConferenciaDto implements Serializable {
     private String nombres;
     private String apellidos;
     private String correo;
-    private Integer celular;
+    private String celular;
     private Integer edad;
     private String iglesia;
     private ConferenciaDto conferencia;
@@ -27,7 +27,7 @@ public class RegistroConferenciaDto implements Serializable {
     public RegistroConferenciaDto() {
     }
 
-    public RegistroConferenciaDto(Integer id, String nombres, String apellidos, String correo, Integer celular, Integer edad, String iglesia, ConferenciaDto conferencia, PaisDto pais, CargoDto cargo, FuenteDto fuente, String estado, Instant fechaRegistro, String usuarioRegistro, Instant fechaModificacion, String usuarioModificacion, String qrCodeBase64) {
+    public RegistroConferenciaDto(Integer id, String nombres, String apellidos, String correo, String celular, Integer edad, String iglesia, ConferenciaDto conferencia, PaisDto pais, CargoDto cargo, FuenteDto fuente, String estado, Instant fechaRegistro, String usuarioRegistro, Instant fechaModificacion, String usuarioModificacion, String qrCodeBase64) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -79,11 +79,11 @@ public class RegistroConferenciaDto implements Serializable {
         this.correo = correo;
     }
 
-    public Integer getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 

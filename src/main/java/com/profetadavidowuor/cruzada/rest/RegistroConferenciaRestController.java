@@ -64,4 +64,15 @@ public class RegistroConferenciaRestController {
         logger.info("Fin enviarEmailConstanciaParticipante.......");
 
     }
+
+    @PostMapping (value="/agregarContactoParticipanteSendinBlue/{idParticipante}")
+    public void agregarContactoParticipanteSendinBlue(@PathVariable("idParticipante") Integer idParticipante) throws Exception {
+
+        logger.info("Inicio agregarContactoParticipanteSendinBlue.......");
+
+        registroConferenciaService.agregarContactoParticipanteSendinBlue(idParticipante);
+
+        logger.info("Fin agregarContactoParticipanteSendinBlue.......");
+
+    }
 }

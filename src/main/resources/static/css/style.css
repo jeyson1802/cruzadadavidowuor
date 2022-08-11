@@ -2811,3 +2811,7 @@ select::-ms-expand {
 .fa-telegram{
     margin-bottom: 10px;
 }
+
+.iti {
+    display: block !important;
+}

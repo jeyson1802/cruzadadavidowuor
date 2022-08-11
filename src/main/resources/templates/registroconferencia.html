@@ -8,12 +8,14 @@
     <!-- CSS
         ================================================== -->
     <link rel="stylesheet" href="vendors/formvalidation/dist/css/FormValidation.min.css">
+    <link rel="stylesheet" href="vendors/intlTelInput/css/intlTelInput.min.css">
 
     <!-- Javascript Files
         ================================================== -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
     <script type="text/javascript" src="vendors/formvalidation/dist/js/FormValidation.min.js"></script>
     <script type="text/javascript" src="vendors/formvalidation/dist/js/plugins/Bootstrap3.js"></script>
+    <script type="text/javascript" src="vendors/intlTelInput/js/intlTelInput-jquery.min.js"></script>
     <script type="text/javascript" src="js/negocio/registroconferencia.js"></script>
 
 </head>
@@ -96,7 +98,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="label-formulario">Celular</label>
-                                        <input class="form-control" name="txt_celular" id="txt_celular" placeholder="" type="number" required>
+                                        <input class="form-control" name="txt_celular" id="txt_celular" placeholder="" type="tel" required>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +116,7 @@
                                             <option value="">Seleccione</option>
                                             <option th:each="pais : ${paises}"
                                                     th:value="${pais.id}"
-                                                    th:text="${pais.descripcion}">
+                                                    th:text="${pais.descripcion}" th:selected="${pais.id==conferencia.pais.id}">
                                             </option>
                                         </select>
                                     </div>
