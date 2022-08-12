@@ -2,8 +2,10 @@ package com.profetadavidowuor.cruzada.service.impl;
 
 import com.profetadavidowuor.cruzada.dto.RegistroConferenciaDto;
 import com.profetadavidowuor.cruzada.model.Conferencia;
+import com.profetadavidowuor.cruzada.model.Pais;
 import com.profetadavidowuor.cruzada.model.RegistroConferencia;
 import com.profetadavidowuor.cruzada.repository.ConferenciaRepository;
+import com.profetadavidowuor.cruzada.repository.PaisRepository;
 import com.profetadavidowuor.cruzada.repository.RegistroConferenciaRepository;
 import com.profetadavidowuor.cruzada.request.RequestRegistroConferencia;
 import com.profetadavidowuor.cruzada.service.*;
@@ -34,6 +36,9 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
     private ConferenciaRepository conferenciaRepository;
 
     @Autowired
+    private PaisRepository paisRepository;
+
+    @Autowired
     private QRCodeService qrCodeService;
 
     @Autowired
@@ -57,6 +62,12 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
 
         RegistroConferencia registroConferencia = modelMapper.map(requestRegistroConferencia, RegistroConferencia.class);
 
+        Pais pais = paisRepository.findByCode(requestRegistroConferencia.getCodePais());
+        registroConferencia.setPais(pais);
+
+        registroConferencia.setIndicadorConstancia(Constante.INDICADOR_NO_TERMINADO);
+        registroConferencia.setIndicadorCorreo(Constante.INDICADOR_NO_TERMINADO);
+        registroConferencia.setIndicadorEmailMarketing(Constante.INDICADOR_NO_TERMINADO);
         registroConferencia.setEstado(Constante.COD_ESTADO_ACTIVO);
         registroConferencia.setFechaRegistro(Instant.now());
         registroConferencia.setUsuarioRegistro(Constante.USUARIO_DEFAULT);
@@ -115,7 +126,7 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
 
         sendinBlueService.crearContacto(participante.getCorreo(),
                 participante.getApellidos(), participante.getNombres(),
-                "+51" + participante.getCelular(), Constante.ID_LISTA_SENDINBLUE_CONFERENCIA_RD);
+                participante.getCelular(), Constante.ID_LISTA_SENDINBLUE_CONFERENCIA_RD);
 
     }
 

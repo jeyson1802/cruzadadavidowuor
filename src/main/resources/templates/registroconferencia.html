@@ -116,7 +116,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="label-formulario">País</label>
-                                        <select class="selectpicker countrypicker form-control" name="sel_pais" id="sel_pais" data-flag="true" data-default="DO" required>
+                                        <select class="form-control" name="sel_pais" id="sel_pais" required>
+                                            <option value="">Seleccione</option>
+                                            <option th:each="pais : ${paises}"
+                                                    th:value="${pais.code}"
+                                                    th:text="${pais.descripcion}" th:selected="${pais.id==conferencia.pais.id}">
+                                            </option>
+                                        </select>
                                         </select>
                                     </div>
                                 </div>
@@ -224,7 +230,7 @@
                                 </span>
                             </div>
                             <div class="col-md-12">
-                                <a class="btn btn-primary solid blank" href="http://localhost" target="_blank">Unirme a Telegram</a>
+                                <a class="btn btn-primary solid blank" th:href="${conferencia.linkTelegram}" target="_blank">Unirme a Telegram</a>
                             </div>
                         </div>
                     </div><!-- Col end -->

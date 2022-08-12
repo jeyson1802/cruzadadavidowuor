@@ -32,8 +32,9 @@ public class PrincipalController {
     private QRCodeService qrCodeService;
 
     @GetMapping("/")
-    public String inicioPage(Model model) {
-        //model.addAttribute("appName", appName);
+    public String inicioPage(Model model) throws Exception {
+
+        model.addAttribute("conferencia", conferenciaService.obtenerConferenciaPorPais(Constante.COD_PAIS_REPUBLICA_DOMINICANA));
         return "home";
     }
 
@@ -57,5 +58,17 @@ public class PrincipalController {
         model.addAttribute("parametros", parameters);
 
         return "registroconferencia";
+    }
+
+    @GetMapping("/profetadavidowuor")
+    public String profetadavidowuor(Model model) throws Exception {
+
+        return "profetadavidowuor";
+    }
+
+    @GetMapping("/preguntasfrecuentes")
+    public String preguntasfrecuentes(Model model) throws Exception {
+
+        return "preguntasfrecuentes";
     }
 }

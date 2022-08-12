@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class PaisDto implements Serializable {
     private Integer id;
+    private String code;
     private String descripcion;
     private String estado;
     private Instant fechaRegistro;
@@ -16,8 +17,9 @@ public class PaisDto implements Serializable {
     public PaisDto() {
     }
 
-    public PaisDto(Integer id, String descripcion, String estado, Instant fechaRegistro, String usuarioRegistro, Instant fechaModificacion, String usuarioModificacion) {
+    public PaisDto(Integer id, String code, String descripcion, String estado, Instant fechaRegistro, String usuarioRegistro, Instant fechaModificacion, String usuarioModificacion) {
         this.id = id;
+        this.code = code;
         this.descripcion = descripcion;
         this.estado = estado;
         this.fechaRegistro = fechaRegistro;
@@ -28,6 +30,14 @@ public class PaisDto implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public void setDescripcion(String descripcion) {
@@ -83,33 +93,16 @@ public class PaisDto implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PaisDto entity = (PaisDto) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.descripcion, entity.descripcion) &&
-                Objects.equals(this.estado, entity.estado) &&
-                Objects.equals(this.fechaRegistro, entity.fechaRegistro) &&
-                Objects.equals(this.usuarioRegistro, entity.usuarioRegistro) &&
-                Objects.equals(this.fechaModificacion, entity.fechaModificacion) &&
-                Objects.equals(this.usuarioModificacion, entity.usuarioModificacion);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, descripcion, estado, fechaRegistro, usuarioRegistro, fechaModificacion, usuarioModificacion);
-    }
-
-    @Override
     public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "descripcion = " + descripcion + ", " +
-                "estado = " + estado + ", " +
-                "fechaRegistro = " + fechaRegistro + ", " +
-                "usuarioRegistro = " + usuarioRegistro + ", " +
-                "fechaModificacion = " + fechaModificacion + ", " +
-                "usuarioModificacion = " + usuarioModificacion + ")";
+        return "PaisDto{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", estado='" + estado + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", usuarioRegistro='" + usuarioRegistro + '\'' +
+                ", fechaModificacion=" + fechaModificacion +
+                ", usuarioModificacion='" + usuarioModificacion + '\'' +
+                '}';
     }
 }

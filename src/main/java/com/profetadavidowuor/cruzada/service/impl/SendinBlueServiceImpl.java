@@ -28,7 +28,7 @@ public class SendinBlueServiceImpl implements SendinBlueService {
 
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("api-key");
-        apiKey.setApiKey("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");
+        apiKey.setApiKey("");
 
         ContactsApi api = new ContactsApi();
 

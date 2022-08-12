@@ -2846,3 +2846,6 @@ select::-ms-expand {
     outline: 0px auto -webkit-focus-ring-color!important;
 }
 
+.footer-social ul li a i.fa-youtube:hover {
+    color: #d32a1e;
+}

@@ -55,6 +55,6 @@ jib {
 			username = 'jeyson1802'
 			password = 'untecs18'
 		}
-		tags = ['v1']
+		tags = ['v3']
 	}
 }

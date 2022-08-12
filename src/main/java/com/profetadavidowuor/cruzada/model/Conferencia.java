@@ -31,7 +31,13 @@ public class Conferencia {
     private String correo;
 
     @Column(name = "contacto", nullable = false)
-    private Long contacto;
+    private String contacto;
+
+    @Column(name = "link_telegram", length = 200)
+    private String linkTelegram;
+
+    @Column(name = "id_email_marketing", length = 10)
+    private String idEmailMarketing;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idpais", nullable = false)
@@ -115,12 +121,28 @@ public class Conferencia {
         this.correo = correo;
     }
 
-    public Long getContacto() {
+    public String getContacto() {
         return contacto;
     }
 
-    public void setContacto(Long contacto) {
+    public void setContacto(String contacto) {
         this.contacto = contacto;
+    }
+
+    public String getLinkTelegram() {
+        return linkTelegram;
+    }
+
+    public void setLinkTelegram(String linkTelegram) {
+        this.linkTelegram = linkTelegram;
+    }
+
+    public String getIdEmailMarketing() {
+        return idEmailMarketing;
+    }
+
+    public void setIdEmailMarketing(String idEmailMarketing) {
+        this.idEmailMarketing = idEmailMarketing;
     }
 
     public Pais getPais() {
@@ -181,7 +203,9 @@ public class Conferencia {
                 ", lugar='" + lugar + '\'' +
                 ", horario='" + horario + '\'' +
                 ", correo='" + correo + '\'' +
-                ", contacto=" + contacto +
+                ", contacto='" + contacto + '\'' +
+                ", linkTelegram='" + linkTelegram + '\'' +
+                ", idEmailMarketing='" + idEmailMarketing + '\'' +
                 ", pais=" + pais +
                 ", estado='" + estado + '\'' +
                 ", fechaRegistro=" + fechaRegistro +

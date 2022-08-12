@@ -8,18 +8,18 @@ public class RequestRegistroConferencia implements Serializable {
     private String nombres;
     private String apellidos;
     private String correo;
-    private Long celular;
+    private String celular;
     private Integer edad;
     private String iglesia;
     private Integer idConferencia;
-    private Integer idPais;
+    private String codePais;
     private Integer idCargo;
     private Integer idFuente;
 
     public RequestRegistroConferencia() {
     }
 
-    public RequestRegistroConferencia(String nombres, String apellidos, String correo, Long celular, Integer edad, String iglesia, Integer idConferencia, Integer idPais, Integer idCargo, Integer idFuente) {
+    public RequestRegistroConferencia(String nombres, String apellidos, String correo, String celular, Integer edad, String iglesia, Integer idConferencia, String codePais, Integer idCargo, Integer idFuente) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
@@ -27,7 +27,7 @@ public class RequestRegistroConferencia implements Serializable {
         this.edad = edad;
         this.iglesia = iglesia;
         this.idConferencia = idConferencia;
-        this.idPais = idPais;
+        this.codePais = codePais;
         this.idCargo = idCargo;
         this.idFuente = idFuente;
     }
@@ -56,11 +56,11 @@ public class RequestRegistroConferencia implements Serializable {
         this.correo = correo;
     }
 
-    public Long getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(Long celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
@@ -88,12 +88,12 @@ public class RequestRegistroConferencia implements Serializable {
         this.idConferencia = idConferencia;
     }
 
-    public Integer getIdPais() {
-        return idPais;
+    public String getCodePais() {
+        return codePais;
     }
 
-    public void setIdPais(Integer idPais) {
-        this.idPais = idPais;
+    public void setCodePais(String codePais) {
+        this.codePais = codePais;
     }
 
     public Integer getIdCargo() {

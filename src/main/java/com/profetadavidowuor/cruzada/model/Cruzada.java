@@ -30,7 +30,10 @@ public class Cruzada {
     private String correo;
 
     @Column(name = "contacto", nullable = false)
-    private Integer contacto;
+    private String contacto;
+
+    @Column(name = "id_email_marketing", length = 10)
+    private String idEmailMarketing;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idpais", nullable = false)
@@ -107,11 +110,11 @@ public class Cruzada {
         this.correo = correo;
     }
 
-    public Integer getContacto() {
+    public String getContacto() {
         return contacto;
     }
 
-    public void setContacto(Integer contacto) {
+    public void setContacto(String contacto) {
         this.contacto = contacto;
     }
 
@@ -173,7 +176,8 @@ public class Cruzada {
                 ", lugar='" + lugar + '\'' +
                 ", horario='" + horario + '\'' +
                 ", correo='" + correo + '\'' +
-                ", contacto=" + contacto +
+                ", contacto='" + contacto + '\'' +
+                ", idEmailMarketing='" + idEmailMarketing + '\'' +
                 ", pais=" + pais +
                 ", estado='" + estado + '\'' +
                 ", fechaRegistro=" + fechaRegistro +

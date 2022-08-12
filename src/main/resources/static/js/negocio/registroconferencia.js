@@ -213,7 +213,7 @@ function registrarParticipanteConferencia() {
     participante["correo"] = txt_correo.val();
     participante["celular"] = txt_celular.intlTelInput("getNumber");
     participante["edad"] = txt_edad.val();
-    participante["idPais"] = sel_pais.val();
+    participante["codePais"] = sel_pais.val();
     participante["iglesia"] = txt_iglesia.val();
     participante["idCargo"] = sel_cargo.val();
     participante["idFuente"] = sel_fuente.val();

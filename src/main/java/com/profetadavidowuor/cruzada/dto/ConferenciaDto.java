@@ -13,7 +13,8 @@ public class ConferenciaDto implements Serializable {
     private String lugar;
     private String horario;
     private String correo;
-    private Long contacto;
+    private String contacto;
+    private String linkTelegram;
     private PaisDto pais;
     private String estado;
     private Instant fechaRegistro;
@@ -24,7 +25,7 @@ public class ConferenciaDto implements Serializable {
     public ConferenciaDto() {
     }
 
-    public ConferenciaDto(Integer id, String descripcion, LocalDate fechaInicial, LocalDate fechaFinal, String lugar, String horario, String correo, Long contacto, PaisDto pais, String estado, Instant fechaRegistro, String usuarioRegistro, Instant fechaModificacion, String usuarioModificacion) {
+    public ConferenciaDto(Integer id, String descripcion, LocalDate fechaInicial, LocalDate fechaFinal, String lugar, String horario, String correo, String contacto, String linkTelegram, PaisDto pais, String estado, Instant fechaRegistro, String usuarioRegistro, Instant fechaModificacion, String usuarioModificacion) {
         this.id = id;
         this.descripcion = descripcion;
         this.fechaInicial = fechaInicial;
@@ -33,6 +34,7 @@ public class ConferenciaDto implements Serializable {
         this.horario = horario;
         this.correo = correo;
         this.contacto = contacto;
+        this.linkTelegram = linkTelegram;
         this.pais = pais;
         this.estado = estado;
         this.fechaRegistro = fechaRegistro;
@@ -69,7 +71,7 @@ public class ConferenciaDto implements Serializable {
         this.correo = correo;
     }
 
-    public void setContacto(Long contacto) {
+    public void setContacto(String contacto) {
         this.contacto = contacto;
     }
 
@@ -125,7 +127,7 @@ public class ConferenciaDto implements Serializable {
         return correo;
     }
 
-    public Long getContacto() {
+    public String getContacto() {
         return contacto;
     }
 
@@ -153,48 +155,32 @@ public class ConferenciaDto implements Serializable {
         return usuarioModificacion;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ConferenciaDto entity = (ConferenciaDto) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.descripcion, entity.descripcion) &&
-                Objects.equals(this.fechaInicial, entity.fechaInicial) &&
-                Objects.equals(this.fechaFinal, entity.fechaFinal) &&
-                Objects.equals(this.lugar, entity.lugar) &&
-                Objects.equals(this.horario, entity.horario) &&
-                Objects.equals(this.correo, entity.correo) &&
-                Objects.equals(this.contacto, entity.contacto) &&
-                Objects.equals(this.pais, entity.pais) &&
-                Objects.equals(this.estado, entity.estado) &&
-                Objects.equals(this.fechaRegistro, entity.fechaRegistro) &&
-                Objects.equals(this.usuarioRegistro, entity.usuarioRegistro) &&
-                Objects.equals(this.fechaModificacion, entity.fechaModificacion) &&
-                Objects.equals(this.usuarioModificacion, entity.usuarioModificacion);
+    public String getLinkTelegram() {
+        return linkTelegram;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, descripcion, fechaInicial, fechaFinal, lugar, horario, correo, contacto, pais, estado, fechaRegistro, usuarioRegistro, fechaModificacion, usuarioModificacion);
+    public void setLinkTelegram(String linkTelegram) {
+        this.linkTelegram = linkTelegram;
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "descripcion = " + descripcion + ", " +
-                "fechaInicial = " + fechaInicial + ", " +
-                "fechaFinal = " + fechaFinal + ", " +
-                "lugar = " + lugar + ", " +
-                "horario = " + horario + ", " +
-                "correo = " + correo + ", " +
-                "contacto = " + contacto + ", " +
-                "pais = " + pais + ", " +
-                "estado = " + estado + ", " +
-                "fechaRegistro = " + fechaRegistro + ", " +
-                "usuarioRegistro = " + usuarioRegistro + ", " +
-                "fechaModificacion = " + fechaModificacion + ", " +
-                "usuarioModificacion = " + usuarioModificacion + ")";
+        return "ConferenciaDto{" +
+                "id=" + id +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaInicial=" + fechaInicial +
+                ", fechaFinal=" + fechaFinal +
+                ", lugar='" + lugar + '\'' +
+                ", horario='" + horario + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contacto='" + contacto + '\'' +
+                ", linkTelegram='" + linkTelegram + '\'' +
+                ", pais=" + pais +
+                ", estado='" + estado + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                ", usuarioRegistro='" + usuarioRegistro + '\'' +
+                ", fechaModificacion=" + fechaModificacion +
+                ", usuarioModificacion='" + usuarioModificacion + '\'' +
+                '}';
     }
 }

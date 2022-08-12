@@ -13,6 +13,8 @@ public class Pais {
     @Column(name = "idpais", nullable = false)
     private Integer id;
 
+    @Column(name = "code", nullable = false, length = 2)
+    private String code;
     @Column(name = "descripcion", nullable = false, length = 200)
     private String descripcion;
 
@@ -42,6 +44,14 @@ public class Pais {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescripcion() {
@@ -96,6 +106,7 @@ public class Pais {
     public String toString() {
         return "Pais{" +
                 "id=" + id +
+                ", code='" + code + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", estado='" + estado + '\'' +
                 ", fechaRegistro=" + fechaRegistro +

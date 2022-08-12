@@ -20,8 +20,8 @@ public class Enfermo {
     @Column(name = "correo", nullable = false, length = 200)
     private String correo;
 
-    @Column(name = "celular", nullable = false)
-    private Integer celular;
+    @Column(name = "celular", nullable = false, length = 20)
+    private String celular;
 
     @Column(name = "edad")
     private Integer edad;
@@ -35,9 +35,14 @@ public class Enfermo {
     @Column(name = "anio_enfermedad", nullable = false)
     private Integer anioEnfermedad;
 
-    @Column(name = "foto_diagnostico")
-    private byte[] fotoDiagnostico;
+    @Column(name = "ind_constancia", nullable = false, length = 1)
+    private String indicadorConstancia;
 
+    @Column(name = "ind_correo", nullable = false, length = 1)
+    private String indicadorCorreo;
+
+    @Column(name = "ind_email_marketing", nullable = false, length = 1)
+    private String indicadorEmailMarketing;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idcruzada", nullable = false)
     private Cruzada cruzada;
@@ -97,11 +102,11 @@ public class Enfermo {
         this.correo = correo;
     }
 
-    public Integer getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
@@ -137,12 +142,28 @@ public class Enfermo {
         this.anioEnfermedad = anioEnfermedad;
     }
 
-    public byte[] getFotoDiagnostico() {
-        return fotoDiagnostico;
+    public String getIndicadorConstancia() {
+        return indicadorConstancia;
     }
 
-    public void setFotoDiagnostico(byte[] fotoDiagnostico) {
-        this.fotoDiagnostico = fotoDiagnostico;
+    public void setIndicadorConstancia(String indicadorConstancia) {
+        this.indicadorConstancia = indicadorConstancia;
+    }
+
+    public String getIndicadorCorreo() {
+        return indicadorCorreo;
+    }
+
+    public void setIndicadorCorreo(String indicadorCorreo) {
+        this.indicadorCorreo = indicadorCorreo;
+    }
+
+    public String getIndicadorEmailMarketing() {
+        return indicadorEmailMarketing;
+    }
+
+    public void setIndicadorEmailMarketing(String indicadorEmailMarketing) {
+        this.indicadorEmailMarketing = indicadorEmailMarketing;
     }
 
     public Cruzada getCruzada() {
@@ -216,12 +237,14 @@ public class Enfermo {
                 ", nombres='" + nombres + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", correo='" + correo + '\'' +
-                ", celular=" + celular +
+                ", celular='" + celular + '\'' +
                 ", edad=" + edad +
                 ", iglesia='" + iglesia + '\'' +
                 ", enfermedad='" + enfermedad + '\'' +
                 ", anioEnfermedad=" + anioEnfermedad +
-                ", fotoDiagnostico=" + Arrays.toString(fotoDiagnostico) +
+                ", indicadorConstancia='" + indicadorConstancia + '\'' +
+                ", indicadorCorreo='" + indicadorCorreo + '\'' +
+                ", indicadorEmailMarketing='" + indicadorEmailMarketing + '\'' +
                 ", cruzada=" + cruzada +
                 ", pais=" + pais +
                 ", fuente=" + fuente +

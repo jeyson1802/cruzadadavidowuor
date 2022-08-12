@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}" lang="en">
+
+<head>
+
+    <!-- CSS
+        ================================================== -->
+    <link rel="stylesheet" href="vendors/formvalidation/dist/css/FormValidation.min.css">
+    <link rel="stylesheet" href="vendors/intlTelInput/css/intlTelInput.min.css">
+    <link rel="stylesheet" href="vendors/bootstrap-select/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="vendors/bootstrap-select-country/css/bootstrap-select-country.min.css">
+
+    <!-- Javascript Files
+        ================================================== -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+    <script type="text/javascript" src="vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+    <script type="text/javascript" src="vendors/formvalidation/dist/js/plugins/Bootstrap3.js"></script>
+    <script type="text/javascript" src="vendors/intlTelInput/js/intlTelInput-jquery.min.js"></script>
+    <script type="text/javascript" src="vendors/bootstrap-select/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="vendors/bootstrap-select-country/js/bootstrap-select-country.min.js"></script>
+    <script type="text/javascript" src="js/negocio/registroconferencia.js"></script>
+
+</head>
+
+<body>
+
+    <div layout:fragment="content" th:remove="tag">
+
+        <div id="page-banner-area" class="page-banner-area" style="background-image:url(images/banner/banner1.jpg)">
+            <!-- Subpage title start -->
+            <div class="page-banner-title">
+                <div class="text-center">
+                    <h2>Preguntas Frecuentes</h2>
+                </div>
+            </div><!-- Subpage title end -->
+        </div><!-- Banner end -->
+
+        <section id="main-container" class="main-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="title-classic">Información Doctrinal</h3>
+
+                        <div class="panel-group panel-classic" id="accordionA">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordionA, #accordionB" href="#collapseOne">
+                                            ¿Qué entendemos por arrepentimiento</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <p>El arrepentimiento es un cambio en la manera de pensar y en el corazón que brinda una nueva perspectiva de Dios, de uno mismo y del mundo; implica apartarse del pecado y volverse a Dios en busca del perdón.</p>
+                                    </div>
+                                </div>
+                            </div><!--/ Panel 1 end-->
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" class="collapsed" data-parent="#accordionA, #accordionB" href="#collapseTwo">¿Qué entendemos por santidad?</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>Santidad significa estar apartado para Dios. Los cristianos estamos apartados para glorificar y servir a nuestro Dios.</p>
+                                    </div>
+                                </div>
+                            </div><!--/ Panel 2 end-->
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" class="collapsed" data-parent="#accordionA, #accordionB" href="#collapseThree">¿El rapto de la iglesia es importante?</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p>No existe mensaje más consolador para un verdadero cristiano que la verdad del Rapto, con la cual la Palabra nos insta a consolarnos los unos a los otros. Tito 2: 13</p>
+                                    </div>
+                                </div>
+                            </div><!--/ Panel 3 end-->
+
+                        </div><!-- Accordion end -->
+
+                    </div><!-- Col end -->
+
+                </div><!-- Content row end -->
+            </div><!-- Conatiner end -->
+        </section><!-- Main container end -->
+
+    </div>
+</body>
+</html>

@@ -29,6 +29,15 @@ public class RegistroConferencia {
     @Column(name = "iglesia", length = 200)
     private String iglesia;
 
+    @Column(name = "ind_constancia", nullable = false, length = 1)
+    private String indicadorConstancia;
+
+    @Column(name = "ind_correo", nullable = false, length = 1)
+    private String indicadorCorreo;
+
+    @Column(name = "ind_email_marketing", nullable = false, length = 1)
+    private String indicadorEmailMarketing;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idconferencia", nullable = false)
     private Conferencia conferencia;
@@ -116,6 +125,30 @@ public class RegistroConferencia {
         this.iglesia = iglesia;
     }
 
+    public String getIndicadorConstancia() {
+        return indicadorConstancia;
+    }
+
+    public void setIndicadorConstancia(String indicadorConstancia) {
+        this.indicadorConstancia = indicadorConstancia;
+    }
+
+    public String getIndicadorCorreo() {
+        return indicadorCorreo;
+    }
+
+    public void setIndicadorCorreo(String indicadorCorreo) {
+        this.indicadorCorreo = indicadorCorreo;
+    }
+
+    public String getIndicadorEmailMarketing() {
+        return indicadorEmailMarketing;
+    }
+
+    public void setIndicadorEmailMarketing(String indicadorEmailMarketing) {
+        this.indicadorEmailMarketing = indicadorEmailMarketing;
+    }
+
     public Conferencia getConferencia() {
         return conferencia;
     }
@@ -195,9 +228,12 @@ public class RegistroConferencia {
                 ", nombres='" + nombres + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", correo='" + correo + '\'' +
-                ", celular=" + celular +
+                ", celular='" + celular + '\'' +
                 ", edad=" + edad +
                 ", iglesia='" + iglesia + '\'' +
+                ", indicadorConstancia='" + indicadorConstancia + '\'' +
+                ", indicadorCorreo='" + indicadorCorreo + '\'' +
+                ", indicadorEmailMarketing='" + indicadorEmailMarketing + '\'' +
                 ", conferencia=" + conferencia +
                 ", pais=" + pais +
                 ", cargo=" + cargo +
