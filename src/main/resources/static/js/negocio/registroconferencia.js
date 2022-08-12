@@ -84,8 +84,7 @@ function initComponentes() {
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.18/js/utils.min.js"
     });
 
-    FormValidation.validators.checkNumeroCelular = esNumeroCelularValido;
-
+    $('.countrypicker').countrypicker();
 }
 
 function validacionFormularioRegistroConferencia() {

@@ -2815,3 +2815,34 @@ select::-ms-expand {
 .iti {
     display: block !important;
 }
+
+.dropdown-toggle{
+    height: 44px;
+    border-radius: inherit;
+    color: #959595;
+    border: none;
+}
+
+.filter-option {
+    padding-top: 5px;
+}
+
+.bs-caret {
+    display: none;
+}
+
+.bootstrap-select .dropdown-menu {
+    background: #ffffff;
+}
+
+.bootstrap-select .dropdown-menu li a span.text {
+    color: #959595;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+    outline: thin dotted #333!important;
+    outline: 0px auto -webkit-focus-ring-color!important;
+}
+
