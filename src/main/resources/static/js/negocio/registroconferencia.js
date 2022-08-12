@@ -75,15 +75,16 @@ function initComponentes() {
     });
 
     txt_celular.intlTelInput({
-        allowDropdown:false,
-        customPlaceholder: "off",
+        allowDropdown:true,
+        autoPlaceholder: "off",
         initialCountry: "do",
-        autoHideDialCode: true,
         preferredCountries: ["do","pe" ],
         separateDialCode: true,
-        formatOnDisplay: true,
+        formatOnDisplay: false,
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.18/js/utils.min.js"
     });
+
+    FormValidation.validators.checkNumeroCelular = esNumeroCelularValido;
 
 }
 
@@ -135,6 +136,9 @@ function validacionFormularioRegistroConferencia() {
                             },
                             integer: {
                                 message: 'Debe ingresar un valor numérico.',
+                            },
+                            checkNumeroCelular : {
+                                message: 'Número de celular inválido.'
                             },
                             stringLength: {
                                 max: 20,
@@ -198,7 +202,7 @@ function validacionFormularioRegistroConferencia() {
                     }),
                 },
             }
-        );
+        ).registerValidator('checkNumeroCelular', esNumeroCelularValido);
 }
 
 function registrarParticipanteConferencia() {
@@ -208,7 +212,7 @@ function registrarParticipanteConferencia() {
     participante["nombres"] = txt_nombres.val();
     participante["apellidos"] = txt_apellidos.val();
     participante["correo"] = txt_correo.val();
-    participante["celular"] = txt_celular.val();
+    participante["celular"] = txt_celular.intlTelInput("getNumber");
     participante["edad"] = txt_edad.val();
     participante["idPais"] = sel_pais.val();
     participante["iglesia"] = txt_iglesia.val();
@@ -432,3 +436,13 @@ function loadding(onOf) {
         jQuery.unblockUI();
     }
 }
+
+const esNumeroCelularValido = function () {
+    return {
+        validate: function (input) {
+            return {
+               valid: $(input.element).intlTelInput('isValidNumber'),
+            };
+        },
+    };
+};
