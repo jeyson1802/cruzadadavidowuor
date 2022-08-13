@@ -97,6 +97,10 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
 
         Map<String, Object> parametros = generarParametrosParticipante(idParticipante);
 
+        RegistroConferencia participante = registroConferenciaRepository.findById(idParticipante).get();
+        participante.setIndicadorConstancia(Constante.INDICADOR_TERMINADO);
+        registroConferenciaRepository.save(participante);
+
         jasperReportService.exportarPDFStream(Constante.REPORTE_CONSTANCIA_PARTICIPANTE_JRXML, parametros, null, outputStream);
 
     }
@@ -117,6 +121,10 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
 
         emailService.sendMail("emails/constancia", "Constancia de Registro a la Conferencia", StringUtil.toStr(parametros.get("CORREO")), parametros, imagenesCorreo, adjuntos);
 
+        RegistroConferencia participante = registroConferenciaRepository.findById(idParticipante).get();
+        participante.setIndicadorCorreo(Constante.INDICADOR_TERMINADO);
+        registroConferenciaRepository.save(participante);
+
     }
 
     @Override
@@ -127,6 +135,9 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
         sendinBlueService.crearContacto(participante.getCorreo(),
                 participante.getApellidos(), participante.getNombres(),
                 participante.getCelular(), Constante.ID_LISTA_SENDINBLUE_CONFERENCIA_RD);
+
+        participante.setIndicadorEmailMarketing(Constante.INDICADOR_TERMINADO);
+        registroConferenciaRepository.save(participante);
 
     }
 

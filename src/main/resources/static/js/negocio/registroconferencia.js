@@ -273,9 +273,6 @@ function registrarParticipanteConferencia() {
                 div_constancia.removeClass("d-none");
 
                 generarConstanciaParticipante(result.id);
-                enviarEmailConstanciaParticipante(result.id);
-                agregarContactoParticipanteSendinBlue(result.id);
-
             }
         }
     });
@@ -334,9 +331,12 @@ function generarConstanciaParticipante(idParticipante) {
                     console.log('generarConstanciaParticipante ==> ' + HttpCodes.success);
                 }
             }
-            }
-        });
-    }
+        },
+        complete : function (xhr, status) {
+            enviarEmailConstanciaParticipante(idParticipante);
+        }
+    });
+}
 
 function enviarEmailConstanciaParticipante(idParticipante) {
 
@@ -353,6 +353,9 @@ function enviarEmailConstanciaParticipante(idParticipante) {
             if (xhr.status == HttpCodes.success) {
                 console.log('enviarEmailConstanciaParticipante ==> ' + HttpCodes.success);
             }
+        },
+        complete : function (xhr, status) {
+            agregarContactoParticipanteSendinBlue(idParticipante);
         }
     });
 
