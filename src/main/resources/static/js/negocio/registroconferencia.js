@@ -84,7 +84,6 @@ function initComponentes() {
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.18/js/utils.min.js"
     });
 
-    $('.countrypicker').countrypicker();
 }
 
 function validacionFormularioRegistroConferencia() {
@@ -226,12 +225,12 @@ function registrarParticipanteConferencia() {
         data: JSON.stringify(participante),
         dataType: 'json',
         beforeSend: function (xhr) {
-            //mostrarModalProgreso("Generando Conciliación");
+            loadding(true);
         },
         error: function (xhr, status, error) {
-            //ocultarModalProgreso();
+            loadding(false);
 
-            if (xhr.status == HttpCodes.unprocessableentity) {
+            if (xhr.status === HttpCodes.unprocessableentity) {
                 if (xhr.responseJSON.code == 422001) {
                     //dialogConfirm(xhr.responseJSON.message, seguirIntentandoConciliar, cancelarReintentoConciliacion);
                 } else {
@@ -246,8 +245,11 @@ function registrarParticipanteConferencia() {
 
         },
         success: function (result, textStatus, xhr) {
-            //ocultarModalProgreso();
+
+            loadding(false);
+
             if (xhr.status == HttpCodes.success) {
+
                 /*bootbox.dialog({
                     message: "<p>" + result + "</p>",
                     size: 'medium',
@@ -260,6 +262,7 @@ function registrarParticipanteConferencia() {
                         }
                     }
                 });*/
+
                 div_formulario.addClass("d-none");
                 h2_conferencia.text(result.conferencia.descripcion);
                 h4_codigo_participante.text('Código de Participante N° ' + result.id);
@@ -287,16 +290,10 @@ function generarConstanciaParticipante(idParticipante) {
         xhrFields: {
             responseType: 'blob'
         },
-        beforeSend: function(xhr) {
-            //mostrarModalProgreso("Generando Reporte Conciliacion Abono Devolución");
-        },
         error : function(xhr, status, error) {
-            //ocultarModalProgreso();
-            var mensaje = "Ocurrió un error inesperado. Por favor contacte al administrador. ";
-            alert(mensaje);
+            console.log('generarConstanciaParticipante ==> Error interno');
         },
         success:function(result, textStatus, xhr) {
-            //ocultarModalProgreso();
 
             if(xhr.status==HttpCodes.success) {
 
@@ -333,6 +330,8 @@ function generarConstanciaParticipante(idParticipante) {
                     } else {
                         window.location = downloadUrl;
                     }
+
+                    console.log('generarConstanciaParticipante ==> ' + HttpCodes.success);
                 }
             }
             }
@@ -346,31 +345,13 @@ function enviarEmailConstanciaParticipante(idParticipante) {
         contentType: "application/json",
         accept: 'text/plain',
         url: '/enviarEmailConstanciaParticipante/' + idParticipante,
-        beforeSend: function (xhr) {
-            //mostrarModalProgreso("Generando Conciliación");
-        },
         error: function (xhr, status, error) {
-            //ocultarModalProgreso();
-
-            if (xhr.status == HttpCodes.unprocessableentity) {
-                if (xhr.responseJSON.code == 422001) {
-                    //dialogConfirm(xhr.responseJSON.message, seguirIntentandoConciliar, cancelarReintentoConciliacion);
-                } else {
-                    //dialogAlert(xhr.responseJSON.message);
-                }
-            }
-
-            if (xhr.status == HttpCodes.error) {
-                var mensaje = "Ocurrió un error inesperado. Por favor contacte al administrador. ";
-                //dialogError(mensaje);
-            }
-
+            console.log('enviarEmailConstanciaParticipante ==> ' + xhr.responseJSON.message);
         },
         success: function (result, textStatus, xhr) {
-            //ocultarModalProgreso();
-            if (xhr.status == HttpCodes.success) {
 
-                //agregarContactoParticipanteSendinBlue(result.id);
+            if (xhr.status == HttpCodes.success) {
+                console.log('enviarEmailConstanciaParticipante ==> ' + HttpCodes.success);
             }
         }
     });
@@ -384,40 +365,22 @@ function agregarContactoParticipanteSendinBlue(idParticipante) {
         contentType: "application/json",
         accept: 'text/plain',
         url: '/agregarContactoParticipanteSendinBlue/' + idParticipante,
-        beforeSend: function (xhr) {
-            //mostrarModalProgreso("Generando Conciliación");
-        },
         error: function (xhr, status, error) {
-            //ocultarModalProgreso();
-
-            if (xhr.status == HttpCodes.unprocessableentity) {
-                if (xhr.responseJSON.code == 422001) {
-                    //dialogConfirm(xhr.responseJSON.message, seguirIntentandoConciliar, cancelarReintentoConciliacion);
-                } else {
-                    //dialogAlert(xhr.responseJSON.message);
-                }
-            }
-
-            if (xhr.status == HttpCodes.error) {
-                var mensaje = "Ocurrió un error inesperado. Por favor contacte al administrador. ";
-                //dialogError(mensaje);
-            }
-
+            console.log('agregarContactoParticipanteSendinBlue ==> ' + xhr.responseJSON.message);
         },
         success: function (result, textStatus, xhr) {
-            //ocultarModalProgreso();
-            if (xhr.status == HttpCodes.success) {
 
-                //agregarContactoParticipanteSendinBlue(result.id);
+            if (xhr.status == HttpCodes.success) {
+                console.log('agregarContactoParticipanteSendinBlue ==> ' + HttpCodes.success);
             }
         }
     });
 
 }
 
-function loadding(onOf) {
-    if (onOf) {
-        var div="<div id='loadding' class='box'><div class='image'><img align='absmiddle' src='/appkahaxi/images/loading.gif'></div><div class='line1'>PROCESANDO</div><div class='line2'>Ejecutando petición, por favor espere...</div></div>";
+function loadding(onOff) {
+    if (onOff) {
+        var div="<div id='loadding' class='box'><div class='image'><img src='images/loading.svg'></div></div>";
         jQuery.blockUI({
             message: div,
             css: {
@@ -427,7 +390,7 @@ function loadding(onOf) {
             },
             overlayCSS: {
                 backgroundColor: 'black',
-                opacity: 0.10
+                opacity: 0.3
             }
         });
     }
