@@ -34,6 +34,8 @@ var Boton = {
     DANGER	: "btn-danger"
 }
 
+var mensajeGenericoError = "Ocurrió un error inesperado. Por favor intentar nuevamente.";
+
 $(document).ready(function(){
     initVariables();
     initComponentes();
@@ -231,16 +233,12 @@ function registrarParticipanteConferencia() {
             loadding(false);
 
             if (xhr.status === HttpCodes.unprocessableentity) {
-                if (xhr.responseJSON.code == 422001) {
-                    //dialogConfirm(xhr.responseJSON.message, seguirIntentandoConciliar, cancelarReintentoConciliacion);
-                } else {
-                    //dialogAlert(xhr.responseJSON.message);
-                }
+                mostrarAlertaAdvertencia(xhr.responseJSON.message);
             }
 
             if (xhr.status == HttpCodes.error) {
-                var mensaje = "Ocurrió un error inesperado. Por favor contacte al administrador. ";
-                //dialogError(mensaje);
+
+                mostrarAlertaError(mensajeGenericoError);
             }
 
         },
@@ -250,18 +248,7 @@ function registrarParticipanteConferencia() {
 
             if (xhr.status == HttpCodes.success) {
 
-                /*bootbox.dialog({
-                    message: "<p>" + result + "</p>",
-                    size: 'medium',
-                    centerVertical: true,
-                    closeButton: false,
-                    buttons: {
-                        cancel: {
-                            label: "Aceptar",
-                            className: Boton.PRIMARY
-                        }
-                    }
-                });*/
+                mostrarAlertaOk("Se ha registrado correctamente en la conferencia.")
 
                 div_formulario.addClass("d-none");
                 h2_conferencia.text(result.conferencia.descripcion);
@@ -382,6 +369,7 @@ function agregarContactoParticipanteSendinBlue(idParticipante) {
 }
 
 function loadding(onOff) {
+
     if (onOff) {
         var div="<div id='loadding' class='box'><div class='image'><img src='images/loading.svg'></div></div>";
         jQuery.blockUI({
@@ -411,3 +399,54 @@ const esNumeroCelularValido = function () {
         },
     };
 };
+
+function mostrarAlertaError(mensaje){
+
+    bootbox.dialog({
+        message: "<img class=\"img-alert\" src=\"images/error.png\" alt=\"\" /><p class=\"text-alert\">" + mensaje + "</p>",
+        size: 'medium',
+        centerVertical: true,
+        closeButton: false,
+        buttons: {
+            cancel: {
+                label: "Aceptar",
+                className: Boton.PRIMARY
+            }
+        }
+    });
+
+}
+
+function mostrarAlertaAdvertencia(mensaje){
+
+    bootbox.dialog({
+        message: "<img class=\"img-alert\" src=\"images/warning.png\" alt=\"\" /><p class=\"text-alert\">" + mensaje + "</p>",
+        size: 'medium',
+        centerVertical: true,
+        closeButton: false,
+        buttons: {
+            cancel: {
+                label: "Aceptar",
+                className: Boton.PRIMARY
+            }
+        }
+    });
+
+}
+
+function mostrarAlertaOk(mensaje){
+
+    bootbox.dialog({
+        message: "<img class=\"img-alert\" src=\"images/ok.png\" alt=\"\" /><p class=\"text-alert\">" + mensaje + "</p>",
+        size: 'medium',
+        centerVertical: true,
+        closeButton: false,
+        buttons: {
+            cancel: {
+                label: "Aceptar",
+                className: Boton.PRIMARY
+            }
+        }
+    });
+
+}

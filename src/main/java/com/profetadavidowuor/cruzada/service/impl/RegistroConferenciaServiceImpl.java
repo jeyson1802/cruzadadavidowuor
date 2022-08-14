@@ -1,6 +1,8 @@
 package com.profetadavidowuor.cruzada.service.impl;
 
 import com.profetadavidowuor.cruzada.dto.RegistroConferenciaDto;
+import com.profetadavidowuor.cruzada.enums.EnumErrores;
+import com.profetadavidowuor.cruzada.exception.UnprocessableEntityException;
 import com.profetadavidowuor.cruzada.model.Conferencia;
 import com.profetadavidowuor.cruzada.model.Pais;
 import com.profetadavidowuor.cruzada.model.RegistroConferencia;
@@ -57,6 +59,14 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
     public RegistroConferenciaDto registrarParticipanteConferencia(RequestRegistroConferencia requestRegistroConferencia) throws Exception {
 
         logger.info("conferencia ===> " + requestRegistroConferencia.toString());
+
+        RegistroConferencia registroConferenciaBD = registroConferenciaRepository.findByCorreo(requestRegistroConferencia.getCorreo());
+
+        if(!StringUtil.isEmpty(registroConferenciaBD)) {
+
+            throw new UnprocessableEntityException(EnumErrores.ERROR_422001.getCodigo(),
+                    EnumErrores.getMensaje(EnumErrores.ERROR_422001.getCodigo()));
+        }
 
         modelMapper.getConfiguration().setAmbiguityIgnored(true);
 

@@ -2849,3 +2849,20 @@ select::-ms-expand {
 .footer-social ul li a i.fa-youtube:hover {
     color: #d32a1e;
 }
+
+.bootbox-body {
+    text-align: center;
+}
+
+.img-alert {
+    width: 50px;
+}
+
+.text-alert {
+    font-weight: 900;
+    padding-top: 20px;
+}
+
+.modal-footer {
+    text-align: center !important;
+}
