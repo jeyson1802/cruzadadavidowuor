@@ -1,5 +1,8 @@
 package com.profetadavidowuor.cruzada.exception;
 
+import com.profetadavidowuor.cruzada.rest.RegistroConferenciaRestController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,6 +16,8 @@ import java.util.Date;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
+
+  private static final Logger logger = LogManager.getLogger(ControllerExceptionHandler.class);
 
   @ExceptionHandler(UnprocessableEntityException.class)
   public ResponseEntity<ResponseMessage> resourceUnprocessableEntityException(UnprocessableEntityException ex, WebRequest request) {
@@ -31,6 +36,8 @@ public class ControllerExceptionHandler {
 
     StringWriter printStackTrace = new StringWriter();
     ex.printStackTrace(new PrintWriter(printStackTrace));
+
+    logger.error(printStackTrace.toString());
 
     ResponseMessage message = new ResponseMessage(
         new Date(),
