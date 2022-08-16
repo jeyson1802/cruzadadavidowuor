@@ -29,6 +29,9 @@ public class RegistroConferencia {
     @Column(name = "iglesia", length = 200)
     private String iglesia;
 
+    @Column(name = "ind_newsletter", nullable = false, length = 1)
+    private String indicadorNewsletter;
+
     @Column(name = "ind_constancia", nullable = false, length = 1)
     private String indicadorConstancia;
 
@@ -123,6 +126,14 @@ public class RegistroConferencia {
 
     public void setIglesia(String iglesia) {
         this.iglesia = iglesia;
+    }
+
+    public String getIndicadorNewsletter() {
+        return indicadorNewsletter;
+    }
+
+    public void setIndicadorNewsletter(String indicadorNewsletter) {
+        this.indicadorNewsletter = indicadorNewsletter;
     }
 
     public String getIndicadorConstancia() {
@@ -231,6 +242,7 @@ public class RegistroConferencia {
                 ", celular='" + celular + '\'' +
                 ", edad=" + edad +
                 ", iglesia='" + iglesia + '\'' +
+                ", indicadorNewsletter='" + indicadorNewsletter + '\'' +
                 ", indicadorConstancia='" + indicadorConstancia + '\'' +
                 ", indicadorCorreo='" + indicadorCorreo + '\'' +
                 ", indicadorEmailMarketing='" + indicadorEmailMarketing + '\'' +

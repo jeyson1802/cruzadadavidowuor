@@ -19,6 +19,7 @@ var p_horario;
 var div_formulario;
 var div_constancia;
 var celular;
+var rad_suscripcion;
 
 var HttpCodes = {
     success  : 200,
@@ -61,6 +62,7 @@ function initVariables() {
     p_horario = $("#p_horario");
     div_formulario =  $("#div_formulario");
     div_constancia =  $("#div_constancia");
+    rad_suscripcion = $("#rad_suscripcion");
 }
 
 function initComponentes() {
@@ -218,6 +220,8 @@ function registrarParticipanteConferencia() {
     participante["iglesia"] = txt_iglesia.val();
     participante["idCargo"] = sel_cargo.val();
     participante["idFuente"] = sel_fuente.val();
+    participante["suscripcion"] = rad_suscripcion[0].checked;
+
 
     $.ajax({
         type: "POST",
@@ -258,6 +262,8 @@ function registrarParticipanteConferencia() {
                 p_horario.html(result.conferencia.horario);
                 img_qr.attr('src', 'data:image/png;base64,' + result.qrCodeBase64);
                 div_constancia.removeClass("d-none");
+
+
 
                 generarConstanciaParticipante(result.id);
             }

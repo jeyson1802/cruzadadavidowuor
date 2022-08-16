@@ -72,6 +72,12 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
 
         RegistroConferencia registroConferencia = modelMapper.map(requestRegistroConferencia, RegistroConferencia.class);
 
+        if(requestRegistroConferencia.getSuscripcion()) {
+            registroConferencia.setIndicadorNewsletter(Constante.COD_ESTADO_ACTIVO);
+        } else {
+            registroConferencia.setIndicadorNewsletter(Constante.COD_ESTADO_INACTIVO);
+        }
+
         Pais pais = paisRepository.findByCode(requestRegistroConferencia.getCodePais());
         registroConferencia.setPais(pais);
 
@@ -142,12 +148,17 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
 
         RegistroConferencia participante = registroConferenciaRepository.findById(idParticipante).get();
 
-        sendinBlueService.crearContacto(participante.getCorreo(),
-                participante.getApellidos(), participante.getNombres(),
-                participante.getCelular(), Constante.ID_LISTA_SENDINBLUE_CONFERENCIA_RD);
+        logger.info("agregarContactoParticipanteSendinBlue ==> INDICADOR NEWSLETTER ==> " + participante.getIndicadorNewsletter());
 
-        participante.setIndicadorEmailMarketing(Constante.INDICADOR_TERMINADO);
-        registroConferenciaRepository.save(participante);
+        if(Constante.COD_ESTADO_ACTIVO.equals(participante.getIndicadorNewsletter())) {
+
+            sendinBlueService.crearContacto(participante.getCorreo(),
+                    participante.getApellidos(), participante.getNombres(),
+                    participante.getCelular(), Constante.ID_LISTA_SENDINBLUE_CONFERENCIA_RD);
+
+            participante.setIndicadorEmailMarketing(Constante.INDICADOR_TERMINADO);
+            registroConferenciaRepository.save(participante);
+        }
 
     }
 

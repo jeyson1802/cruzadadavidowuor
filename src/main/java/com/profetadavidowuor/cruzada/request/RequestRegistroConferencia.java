@@ -16,10 +16,12 @@ public class RequestRegistroConferencia implements Serializable {
     private Integer idCargo;
     private Integer idFuente;
 
+    private Boolean suscripcion;
+
     public RequestRegistroConferencia() {
     }
 
-    public RequestRegistroConferencia(String nombres, String apellidos, String correo, String celular, Integer edad, String iglesia, Integer idConferencia, String codePais, Integer idCargo, Integer idFuente) {
+    public RequestRegistroConferencia(String nombres, String apellidos, String correo, String celular, Integer edad, String iglesia, Integer idConferencia, String codePais, Integer idCargo, Integer idFuente, Boolean suscripcion) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
@@ -30,6 +32,7 @@ public class RequestRegistroConferencia implements Serializable {
         this.codePais = codePais;
         this.idCargo = idCargo;
         this.idFuente = idFuente;
+        this.suscripcion = suscripcion;
     }
 
     public String getNombres() {
@@ -110,5 +113,13 @@ public class RequestRegistroConferencia implements Serializable {
 
     public void setIdFuente(Integer idFuente) {
         this.idFuente = idFuente;
+    }
+
+    public Boolean getSuscripcion() {
+        return suscripcion;
+    }
+
+    public void setSuscripcion(Boolean suscripcion) {
+        this.suscripcion = suscripcion;
     }
 }

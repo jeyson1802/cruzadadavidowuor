@@ -3,6 +3,8 @@ package com.profetadavidowuor.cruzada.util;
 public class Constante {
 	
 	public static final String COD_ESTADO_ACTIVO = "1";
+
+	public static final String COD_ESTADO_INACTIVO = "0";
 	public static final String USUARIO_DEFAULT = "USER_DEFAULT";
 	public static final Integer COD_PAIS_REPUBLICA_DOMINICANA = 60;
 	public static final String URL_GENERATE_QR_CODE = "https://profetadavidowuoramericalatina.org/qr/decode/";

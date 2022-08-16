@@ -35,6 +35,9 @@ public class Enfermo {
     @Column(name = "anio_enfermedad", nullable = false)
     private Integer anioEnfermedad;
 
+    @Column(name = "ind_newsletter", nullable = false, length = 1)
+    private String indicadorNewsletter;
+
     @Column(name = "ind_constancia", nullable = false, length = 1)
     private String indicadorConstancia;
 
@@ -142,6 +145,14 @@ public class Enfermo {
         this.anioEnfermedad = anioEnfermedad;
     }
 
+    public String getIndicadorNewsletter() {
+        return indicadorNewsletter;
+    }
+
+    public void setIndicadorNewsletter(String indicadorNewsletter) {
+        this.indicadorNewsletter = indicadorNewsletter;
+    }
+
     public String getIndicadorConstancia() {
         return indicadorConstancia;
     }
@@ -242,6 +253,7 @@ public class Enfermo {
                 ", iglesia='" + iglesia + '\'' +
                 ", enfermedad='" + enfermedad + '\'' +
                 ", anioEnfermedad=" + anioEnfermedad +
+                ", indicadorNewsletter='" + indicadorNewsletter + '\'' +
                 ", indicadorConstancia='" + indicadorConstancia + '\'' +
                 ", indicadorCorreo='" + indicadorCorreo + '\'' +
                 ", indicadorEmailMarketing='" + indicadorEmailMarketing + '\'' +
