@@ -35,6 +35,9 @@ public class Cruzada {
     @Column(name = "id_email_marketing", length = 10)
     private String idEmailMarketing;
 
+    @Column(name = "api_key_email_marketing", length = 200)
+    private String apiKeyEmailMarketing;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idpais", nullable = false)
     private Pais pais;
@@ -118,6 +121,22 @@ public class Cruzada {
         this.contacto = contacto;
     }
 
+    public String getIdEmailMarketing() {
+        return idEmailMarketing;
+    }
+
+    public void setIdEmailMarketing(String idEmailMarketing) {
+        this.idEmailMarketing = idEmailMarketing;
+    }
+
+    public String getApiKeyEmailMarketing() {
+        return apiKeyEmailMarketing;
+    }
+
+    public void setApiKeyEmailMarketing(String apiKeyEmailMarketing) {
+        this.apiKeyEmailMarketing = apiKeyEmailMarketing;
+    }
+
     public Pais getPais() {
         return pais;
     }
@@ -178,6 +197,7 @@ public class Cruzada {
                 ", correo='" + correo + '\'' +
                 ", contacto='" + contacto + '\'' +
                 ", idEmailMarketing='" + idEmailMarketing + '\'' +
+                ", apiKeyEmailMarketing='" + apiKeyEmailMarketing + '\'' +
                 ", pais=" + pais +
                 ", estado='" + estado + '\'' +
                 ", fechaRegistro=" + fechaRegistro +

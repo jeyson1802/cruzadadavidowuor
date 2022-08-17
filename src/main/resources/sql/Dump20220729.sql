@@ -42,7 +42,7 @@ CREATE TABLE `cargo` (
 
 LOCK TABLES `cargo` WRITE;
 /*!40000 ALTER TABLE `cargo` DISABLE KEYS */;
-INSERT INTO `cargo` VALUES (1,'Pastor','1','2022-07-29 13:37:02','ADMIN',NULL,NULL),(2,'Evangelista','1','2022-07-29 13:37:02','ADMIN',NULL,NULL),(3,'Adorador','1','2022-07-29 13:37:02','ADMIN',NULL,NULL),(4,'Líder','1','2022-07-29 13:37:02','ADMIN',NULL,NULL),(5,'Otros','1','2022-07-29 13:37:02','ADMIN',NULL,NULL);
+INSERT INTO `cargo` VALUES (1,'Arzobispo','1','2022-07-29 13:37:02','ADMIN',NULL,NULL), (2,'Obispo','1','2022-07-29 13:37:02','ADMIN',NULL,NULL), (3,'Pastor','1','2022-07-29 13:37:02','ADMIN',NULL,NULL),(4,'Evangelista','1','2022-07-29 13:37:02','ADMIN',NULL,NULL),(5,'Adorador','1','2022-07-29 13:37:02','ADMIN',NULL,NULL),(6,'Líder','1','2022-07-29 13:37:02','ADMIN',NULL,NULL),(7,'Otros','1','2022-07-29 13:37:02','ADMIN',NULL,NULL);
 /*!40000 ALTER TABLE `cargo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,6 +64,7 @@ CREATE TABLE `conferencia` (
                                `contacto` varchar(20) NOT NULL,
                                `link_telegram` varchar(200) DEFAULT NULL,
                                `id_email_marketing` varchar(10) DEFAULT NULL,
+                               `api_key_email_marketing` varchar(200) DEFAULT NULL,
                                `idpais` int(11) NOT NULL,
                                `estado` varchar(1) NOT NULL COMMENT '''1: ACTIVO, 0: INACTIVO''',
                                `fecha_registro` datetime NOT NULL,
@@ -82,7 +83,7 @@ CREATE TABLE `conferencia` (
 
 LOCK TABLES `conferencia` WRITE;
 /*!40000 ALTER TABLE `conferencia` DISABLE KEYS */;
-INSERT INTO `conferencia` VALUES (1,'Conferencia de Líder y Pastores para República Dominicana','2022-12-01','2022-12-02','La Romana','Coming Soon','contacto@profetadavidowuoramericalatina.org',51941377887, 'https://t.me/+zt8edeDV_6RiZTBh', '5', 60, '1','2022-07-29 13:37:02','ADMIN',NULL,NULL);
+INSERT INTO `conferencia` VALUES (1,'Conferencia de Pastores y Líderes para República Dominicana','2022-12-01','2022-12-02','La Romana','Enero 2023','info@profetadavidowuor.org','+1 809', 'https://t.me/+zt8edeDV_6RiZTBh', '2', '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', 60, '1','2022-07-29 13:37:02','ADMIN',NULL,NULL);
 /*!40000 ALTER TABLE `conferencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,6 +104,7 @@ CREATE TABLE `cruzada` (
                            `correo` varchar(200) NOT NULL,
                            `contacto` varchar(20) NOT NULL,
                            `id_email_marketing` varchar(10) DEFAULT NULL,
+                           `api_key_email_marketing` varchar(200) DEFAULT NULL,
                            `idpais` int(11) NOT NULL,
                            `estado` varchar(1) NOT NULL COMMENT '''1: ACTIVO, 0: INACTIVO''',
                            `fecha_registro` datetime NOT NULL,
@@ -121,7 +123,7 @@ CREATE TABLE `cruzada` (
 
 LOCK TABLES `cruzada` WRITE;
 /*!40000 ALTER TABLE `cruzada` DISABLE KEYS */;
-INSERT INTO `cruzada` VALUES (1,'Cruzada de Sanidades y Milagros para República Dominicana','2022-12-01','2022-12-02','La Romana','Coming Soon','cruzada@profetadavidowuoramericalatina.org',51941388778,NULL,60,'1','2022-07-29 13:37:02','ADMIN',NULL,NULL);
+INSERT INTO `cruzada` VALUES (1,'Cruzada de Sanidades y Milagros para República Dominicana','2022-12-01','2022-12-02','La Romana','Enero 2023','info@profetadavidowuor.org','+1 809',NULL, NULL, 60,'1','2022-07-29 13:37:02','ADMIN',NULL,NULL);
 /*!40000 ALTER TABLE `cruzada` ENABLE KEYS */;
 UNLOCK TABLES;
 

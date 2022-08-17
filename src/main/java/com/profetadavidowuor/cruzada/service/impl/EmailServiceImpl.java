@@ -4,6 +4,7 @@ import com.profetadavidowuor.cruzada.service.EmailService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,12 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private SpringTemplateEngine templateEngine;
 
+    @Value("${spring.mail.username}")
+    private String email;
+
+    @Value("${spring.mail.name}")
+    private String nombresEmail;
+
     @Override
     public void sendMail(String template, String asunto, String destino, Map<String, Object> parametros, Map<String, byte[]> imagenesCorreo,  Map<String, byte[]> adjuntos) throws Exception {
 
@@ -35,6 +42,7 @@ public class EmailServiceImpl implements EmailService {
         String process = templateEngine.process(template, context);
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+        helper.setFrom(email, nombresEmail);
         helper.setSubject(asunto);
         helper.setText(process, true);
         helper.setTo(destino);

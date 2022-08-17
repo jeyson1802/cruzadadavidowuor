@@ -152,9 +152,11 @@ public class RegistroConferenciaServiceImpl implements RegistroConferenciaServic
 
         if(Constante.COD_ESTADO_ACTIVO.equals(participante.getIndicadorNewsletter())) {
 
+            Conferencia conferencia = conferenciaRepository.findById(participante.getConferencia().getId()).get();
+
             sendinBlueService.crearContacto(participante.getCorreo(),
                     participante.getApellidos(), participante.getNombres(),
-                    participante.getCelular(), Constante.ID_LISTA_SENDINBLUE_CONFERENCIA_RD);
+                    participante.getCelular(), conferencia.getIdEmailMarketing(), conferencia.getApiKeyEmailMarketing());
 
             participante.setIndicadorEmailMarketing(Constante.INDICADOR_TERMINADO);
             registroConferenciaRepository.save(participante);

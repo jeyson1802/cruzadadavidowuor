@@ -32,11 +32,7 @@ public class CargoServiceImpl implements CargoService {
 
         List<Cargo> listCargo = cargoRepository.findByEstadoOrderByIdAsc(Constante.COD_ESTADO_ACTIVO);
 
-        logger.info("listCargo ===> " + listCargo.toString());
-
         List<CargoDto> listCargoDto = listCargo.stream().map(pais -> modelMapper.map(pais, CargoDto.class)).collect(Collectors.toList());
-
-        logger.info("listCargoDto ===> " + listCargoDto.toString());
 
         return listCargoDto;
 

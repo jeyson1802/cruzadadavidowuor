@@ -30,11 +30,7 @@ public class PaisServiceImpl implements PaisService {
 
         List<Pais> listPais = paisRepository.findByEstadoOrderByDescripcionAsc(Constante.COD_ESTADO_ACTIVO);
 
-        logger.info("listPais ===> " + listPais.toString());
-
         List<PaisDto> listPaisDto = listPais.stream().map(pais -> modelMapper.map(pais, PaisDto.class)).collect(Collectors.toList());
-
-        logger.info("listPaisDto ===> " + listPaisDto.toString());
 
         return listPaisDto;
 

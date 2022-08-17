@@ -39,6 +39,9 @@ public class Conferencia {
     @Column(name = "id_email_marketing", length = 10)
     private String idEmailMarketing;
 
+    @Column(name = "api_key_email_marketing", length = 200)
+    private String apiKeyEmailMarketing;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idpais", nullable = false)
     private Pais pais;
@@ -145,6 +148,14 @@ public class Conferencia {
         this.idEmailMarketing = idEmailMarketing;
     }
 
+    public String getApiKeyEmailMarketing() {
+        return apiKeyEmailMarketing;
+    }
+
+    public void setApiKeyEmailMarketing(String apiKeyEmailMarketing) {
+        this.apiKeyEmailMarketing = apiKeyEmailMarketing;
+    }
+
     public Pais getPais() {
         return pais;
     }
@@ -206,6 +217,7 @@ public class Conferencia {
                 ", contacto='" + contacto + '\'' +
                 ", linkTelegram='" + linkTelegram + '\'' +
                 ", idEmailMarketing='" + idEmailMarketing + '\'' +
+                ", apiKeyEmailMarketing='" + apiKeyEmailMarketing + '\'' +
                 ", pais=" + pais +
                 ", estado='" + estado + '\'' +
                 ", fechaRegistro=" + fechaRegistro +

@@ -22,13 +22,13 @@ public class SendinBlueServiceImpl implements SendinBlueService {
     private static final Logger logger = LogManager.getLogger(SendinBlueServiceImpl.class);
 
     @Override
-    public void crearContacto(String email, String apellidos, String nombres, String numero, String idLista) throws Exception {
+    public void crearContacto(String email, String apellidos, String nombres, String numero, String idLista, String apiKeyEmailMarketing) throws Exception {
 
         logger.info("Inicio crearContacto");
 
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("api-key");
-        apiKey.setApiKey("");
+        apiKey.setApiKey(apiKeyEmailMarketing);
 
         ContactsApi api = new ContactsApi();
 
