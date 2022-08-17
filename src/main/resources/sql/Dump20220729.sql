@@ -33,7 +33,7 @@ CREATE TABLE `cargo` (
                          `fecha_modificacion` datetime DEFAULT NULL,
                          `usuario_modificacion` varchar(45) DEFAULT NULL,
                          PRIMARY KEY (`idcargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE `conferencia` (
 
 LOCK TABLES `conferencia` WRITE;
 /*!40000 ALTER TABLE `conferencia` DISABLE KEYS */;
-INSERT INTO `conferencia` VALUES (1,'Conferencia de Pastores y Líderes para República Dominicana','2022-12-01','2022-12-02','La Romana','Enero 2023','info@profetadavidowuor.org','+1 809', 'https://t.me/+zt8edeDV_6RiZTBh', '2', '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', 60, '1','2022-07-29 13:37:02','ADMIN',NULL,NULL);
+INSERT INTO `conferencia` VALUES (1,'Conferencia de Pastores y Líderes para República Dominicana','2022-12-01','2022-12-02','La Romana','Enero 2023','info@profetadavidowuor.org','+1 809', 'https://t.me/+zt8edeDV_6RiZTBh', '2', '', 60, '1','2022-07-29 13:37:02','ADMIN',NULL,NULL);
 /*!40000 ALTER TABLE `conferencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
