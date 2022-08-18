@@ -263,7 +263,9 @@ function registrarParticipanteConferencia() {
                 img_qr.attr('src', 'data:image/png;base64,' + result.qrCodeBase64);
                 div_constancia.removeClass("d-none");
 
-
+                $('body,html').animate({
+                    scrollTop: 450
+                }, 800);
 
                 generarConstanciaParticipante(result.id);
             }
